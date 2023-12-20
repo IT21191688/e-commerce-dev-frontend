@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
@@ -86,7 +86,10 @@ const LoginPage: React.FC = () => {
 
   */
 
-  useEffect(() => {}, [navigate]);
+  function handleSignUp() {
+    navigate("/register");
+    window.location.reload();
+  }
 
   return (
     <div className=" min-h-screen bg-gray-100 flex justify-center items-center">
@@ -145,7 +148,8 @@ const LoginPage: React.FC = () => {
             <button
               type="submit"
               className="bg-orange-500 text-white rounded-md py-2 px-4 w-full hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
-              style={{ backgroundColor: "#ED8936" }} // Temporary inline style for verification
+              style={{ backgroundColor: "#ED8936" }}
+              onClick={handleSignUp} // Temporary inline style for verification
             >
               Sign Up
             </button>
