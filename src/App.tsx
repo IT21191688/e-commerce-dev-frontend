@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import LoginPage from "./components/LoginPage";
 import AdminHome from "./components/AdminHome";
 import UserHome from "./components/UserHome";
+import RegisterPage from "./components/RegisterPage";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -43,6 +44,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Router>
     </>
