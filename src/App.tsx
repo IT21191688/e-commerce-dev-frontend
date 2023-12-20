@@ -12,20 +12,13 @@ function App() {
   const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    setUser(storedRole ? storedRole : null);
+    setUser(localStorage.getItem("role") ? localStorage.getItem("role") : "");
+  });
 
-    const handleBeforeUnload = () => {
-      // Clear the user data from localStorage when the browser is closed
-      localStorage.removeItem("role");
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  const handleBeforeUnload = () => {
+    // Clear the user data from localStorage when the browser is closed
+    localStorage.removeItem("role");
+  };
 
   return (
     <>

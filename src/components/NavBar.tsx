@@ -45,6 +45,8 @@ export default function NavBar() {
     const data = localStorage.getItem("user");
     setUser(data ? JSON.parse(data) : null);
     setRole(localStorage.getItem("role") || "");
+
+    //alert(localStorage.getItem("role"));
   }, []);
 
   return (

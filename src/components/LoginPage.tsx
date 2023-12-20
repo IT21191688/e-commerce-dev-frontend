@@ -29,14 +29,24 @@ const LoginPage: React.FC = () => {
       console.log(response.data);
 
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.user.role); // Accessing role from user object
+      localStorage.setItem("role", data.user.role);
 
       alert("Login success");
 
-      //window.location.reload(true);
+      if (data.user.role === "admin") {
+        navigate("/adminHome");
+        window.location.reload();
+      } else {
+        navigate("/userHome");
+        window.location.reload();
+      }
+
+      // window.location.reload();
     } catch (error) {
       alert("Login Unsuccess");
       console.log(error);
+
+      navigate("/login");
     }
   };
 
@@ -76,15 +86,7 @@ const LoginPage: React.FC = () => {
 
   */
 
-  useEffect(() => {
-    if (localStorage.getItem("role") === "admin") {
-      navigate("/adminHome");
-    } else if (localStorage.getItem("role") === "user") {
-      navigate("/userHome");
-    } else {
-      navigate("/login");
-    }
-  }, [navigate]);
+  useEffect(() => {}, [navigate]);
 
   return (
     <div className=" min-h-screen bg-gray-100 flex justify-center items-center">
