@@ -34,7 +34,6 @@ function App() {
       ) : user === "user" ? (
         <Router>
           <Routes>
-            {/*<Route exact path='/userHome/:token/:role' element={<UserHome />} />*/}
             <Route path="/userHome" element={<UserHome />} />
           </Routes>
         </Router>

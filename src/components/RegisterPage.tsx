@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -57,7 +56,15 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-lg max-w-md w-full">
+      <div className="w-full lg:w-1/3 p-6">
+        <div className="w-full lg:w-auto mx-auto flex flex-col items-center">
+          <h1 className="text-4xl font-bold">Welcome to The Shop</h1>
+          <p className="mt-2 text-lg">
+            Your go-to destination for all your shopping needs!
+          </p>
+        </div>
+      </div>
+      <div className="bg-white p-6 rounded shadow-lg max-w-md w-full lg:w-2/3">
         <h1 className="text-3xl font-bold text-center text-primary mb-6">
           Customer Register
         </h1>
@@ -172,7 +179,7 @@ export default function RegisterPage() {
               onClick={handleSubmit}
               className="w-full bg-blue-500 text-white rounded-md py-2 px-3 focus:ring focus:ring-opacity-50 focus:ring-blue-400 hover:bg-blue-600"
             >
-              Submit
+              Register
             </button>
           </div>
           <div className="text-center">

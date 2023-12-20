@@ -93,7 +93,7 @@ export default function NavBar() {
                         isDropdownOpenC
                           ? "opacity-100 scale-100"
                           : "opacity-0 scale-95"
-                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${
+                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out ${
                         isDropdownOpenC ? "scale-y-100" : "scale-y-0"
                       }`}
                     >
@@ -137,7 +137,7 @@ export default function NavBar() {
                         isDropdownOpen
                           ? "opacity-100 scale-100"
                           : "opacity-0 scale-95"
-                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${
+                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out ${
                         isDropdownOpen ? "scale-y-100" : "scale-y-0"
                       }`}
                     >
@@ -215,7 +215,7 @@ export default function NavBar() {
                         isDropdownOpen
                           ? "opacity-100 scale-100"
                           : "opacity-0 scale-95"
-                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${
+                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out ${
                         isDropdownOpen ? "scale-y-100" : "scale-y-0"
                       }`}
                     >

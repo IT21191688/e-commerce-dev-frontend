@@ -102,8 +102,8 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-2/3 px-4 lg:px-0 ">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
+      <div className="bg-white p-8 rounded shadow-lg max-w-md mx-autow-full lg:w-2/3 ">
+        <div className="bg-white p-8">
           <h1 className="text-3xl font-bold text-center text-primary mb-6">
             Customer Login
           </h1>
