@@ -51,6 +51,32 @@ const ProductManagement: React.FC = () => {
     product.productname.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleDelete = async (productId: string) => {
+    try {
+      console.log(productId);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.delete(
+        `http://localhost:8090/api/v1/product/deleteProduct/${productId}`,
+        { headers }
+      );
+
+      if ((response.data.isSuccessful = true)) {
+        alert("Product Successfully Deleted");
+        fetchProducts();
+      }
+    } catch (error) {
+      console.error("Error fetching product data:", error);
+    }
+  };
+
   return (
     <div className="flex h-screen">
       <DashBoardSidBar />
@@ -64,7 +90,10 @@ const ProductManagement: React.FC = () => {
             Add New Product
           </button>
         </div>
-        <div className="container mx-auto mt-5">
+        <div
+          className="container mx-auto mt-5"
+          style={{ maxHeight: "500px", overflowY: "auto" }}
+        >
           <input
             type="text"
             placeholder="Search by Product Name"
@@ -96,7 +125,11 @@ const ProductManagement: React.FC = () => {
                   </td>
                   <td className="border px-4 py-2">{product.productprice}</td>
                   <td className="border px-4 py-2">
-                    <img src={product.image} alt="Image" />
+                    <img
+                      className="w-16"
+                      src={product.productimage}
+                      alt="Product"
+                    />
                   </td>
                   <td className="border px-4 py-2">{product.productqty}</td>
                   <td className="border px-4 py-2">{product.productstatus}</td>
@@ -109,7 +142,10 @@ const ProductManagement: React.FC = () => {
                     </button>
                   </td>
                   <td className="border px-4 py-2">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => handleDelete(product._id)}
+                    >
                       Remove
                     </button>
                   </td>

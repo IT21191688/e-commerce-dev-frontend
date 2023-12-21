@@ -22,11 +22,10 @@ const ProductManagement: React.FC = () => {
       formData.append("productname", productname);
       formData.append("description", description);
       formData.append("productcategory", productcategory);
-      formData.append("productprice", parseFloat(productprice).toString()); // Convert to a string if required
-      formData.append("productqty", parseInt(productqty).toString()); // Convert to a string if required
+      formData.append("productprice", parseFloat(productprice).toString());
+      formData.append("productqty", parseInt(productqty).toString());
       formData.append("productimage", productimage || "");
       formData.append("productstatus", productstatus);
-      // formData.append("addedBy", "611234567890123456789012"); // Replace this with a valid user ID from your database
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -36,7 +35,7 @@ const ProductManagement: React.FC = () => {
 
       const headers = {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data", // Set content type to multipart form-data
+        "Content-Type": "multipart/form-data",
       };
 
       const response = await axios.post(
