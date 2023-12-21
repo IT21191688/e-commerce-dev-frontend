@@ -8,6 +8,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/customerManagement");
   };
 
+  const handeProductManage = () => {
+    navigate("/productManagement");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -24,7 +28,10 @@ const DashBoardSidBar: React.FC = () => {
             <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
               Orders
             </li>
-            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handeProductManage}
+            >
               Products
             </li>
             <li

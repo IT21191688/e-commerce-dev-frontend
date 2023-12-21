@@ -103,7 +103,6 @@ const CustomerManagement: React.FC = () => {
       setEditedAddress("");
       setEditedRole("");
 
-      // Close the modal after successful update if needed
       const modal = new bootstrap.Modal(
         document.getElementById("exampleModal")
       );
