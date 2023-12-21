@@ -10,6 +10,7 @@ import UserHome from "./components/UserHome";
 import RegisterPage from "./components/RegisterPage";
 import CustomerManagement from "./components/CustomerManagement";
 import ProductManagement from "./components/ProductManagement";
+import AddNewProduct from "./components/AddNewProduct";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -36,6 +37,7 @@ function App() {
               element={<CustomerManagement />}
             />
             <Route path="/productManagement" element={<ProductManagement />} />
+            <Route path="/addNewProduct" element={<AddNewProduct />} />
           </Routes>
         </Router>
       ) : user === "user" ? (
