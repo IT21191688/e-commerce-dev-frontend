@@ -7,6 +7,13 @@ const CustomerManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCustomer, setSelectedCustomer] = useState<any | null>(null);
 
+  const [editedFirstName, setEditedFirstName] = useState("");
+  const [editedLastName, setEditedLastName] = useState("");
+  const [editedEmail, setEditedEmail] = useState("");
+  const [editedTelephone, setEditedTelephone] = useState("");
+  const [editedAddress, setEditedAddress] = useState("");
+  const [editedRole, setEditedRole] = useState("");
+
   useEffect(() => {
     fetchCustomers();
   }, []);
@@ -38,12 +45,76 @@ const CustomerManagement: React.FC = () => {
     const modal = new bootstrap.Modal(
       document.getElementById("exampleModal") as HTMLElement
     );
+
+    setEditedFirstName(customer.firstname);
+    setEditedLastName(customer.lastname);
+    setEditedEmail(customer.email);
+    setEditedTelephone(customer.telephone);
+    setEditedAddress(customer.address);
+    setEditedRole(customer.role);
     modal.show();
   };
 
   const handleCloseModal = () => {
     setSelectedCustomer(null);
     window.location.reload();
+  };
+
+  const handleEditCustomer = async () => {
+    const userId = selectedCustomer._id;
+
+    try {
+      const updatedCustomerData = {
+        firstname: editedFirstName,
+        lastname: editedLastName,
+        email: editedEmail,
+        telephone: editedTelephone,
+        address: editedAddress,
+        role: editedRole,
+      };
+
+      console.log(updatedCustomerData);
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.post(
+        `http://localhost:8090/api/v1/user/updateUser/${userId}`,
+        updatedCustomerData,
+        {
+          headers,
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Customer data updated");
+      }
+
+      setEditedFirstName("");
+      setEditedLastName("");
+      setEditedEmail("");
+      setEditedTelephone("");
+      setEditedAddress("");
+      setEditedRole("");
+
+      // Close the modal after successful update if needed
+      const modal = new bootstrap.Modal(
+        document.getElementById("exampleModal")
+      );
+      modal.hide();
+
+      // Refetch customers to update the displayed list after the changes
+      fetchCustomers();
+    } catch (error: any) {
+      console.error("Error updating customer data:", error);
+      alert("Error updating customer data:" + error.response.data.message);
+    }
   };
 
   const filteredCustomers = customers.filter((customer: any) =>
@@ -128,21 +199,65 @@ const CustomerManagement: React.FC = () => {
               <div className="modal-body">
                 <form>
                   <div className="mb-3">
-                    <label className="col-form-label">Recipient:</label>
+                    <label className="col-form-label">First Name:</label>
                     <input
                       type="text"
                       className="form-control"
                       id="recipient-name"
-                      defaultValue={selectedCustomer.firstname}
+                      value={editedFirstName}
+                      onChange={(e) => setEditedFirstName(e.target.value)}
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="col-form-label">Message:</label>
+                    <label className="col-form-label">Last Name:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="recipient-name"
+                      value={editedLastName}
+                      onChange={(e) => setEditedLastName(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="col-form-label">Email:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="recipient-name"
+                      value={editedEmail}
+                      onChange={(e) => setEditedEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="col-form-label">Telephone:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="recipient-name"
+                      value={editedTelephone}
+                      onChange={(e) => setEditedTelephone(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="col-form-label">Address:</label>
                     <textarea
                       className="form-control"
                       id="message-text"
-                      defaultValue={selectedCustomer.address}
+                      value={editedAddress}
+                      onChange={(e) => setEditedAddress(e.target.value)}
                     ></textarea>
+                  </div>
+                  <div className="mb-3">
+                    <label className="col-form-label">Role:</label>
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      value={editedRole}
+                      onChange={(e) => setEditedRole(e.target.value)}
+                    >
+                      <option value="admin">Admin</option>
+                      <option value="user">User</option>
+                    </select>
                   </div>
                 </form>
               </div>
@@ -155,7 +270,11 @@ const CustomerManagement: React.FC = () => {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleEditCustomer}
+                >
                   Save changes
                 </button>
               </div>
