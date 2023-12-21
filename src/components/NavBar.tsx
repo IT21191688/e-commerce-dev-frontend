@@ -180,19 +180,19 @@ export default function NavBar() {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/editor">
-                      <FontAwesomeIcon icon={faCode} /> Code Editor
+                      <FontAwesomeIcon icon={faCode} /> About
                     </a>
                   </li>
 
                   <li className="nav-item">
                     <a className="nav-link" href="/viewCourses">
-                      <FontAwesomeIcon icon={faGraduationCap} /> Courese & Tutes
+                      <FontAwesomeIcon icon={faGraduationCap} /> Products
                     </a>
                   </li>
 
                   <li className="nav-item">
                     <a className="nav-link" href="/allpost">
-                      <FontAwesomeIcon icon={faFileCode} /> Review Code
+                      <FontAwesomeIcon icon={faFileCode} /> Contact Us
                     </a>
                   </li>
 

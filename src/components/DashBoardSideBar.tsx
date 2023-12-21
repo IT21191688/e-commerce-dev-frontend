@@ -1,0 +1,49 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const DashBoardSidBar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handeCustomerManage = () => {
+    navigate("/customerManagement");
+  };
+
+  return (
+    <>
+      {/* Sidebar */}
+      <aside className="bg-gray-800 text-white w-64 flex-shrink-0">
+        <div className="p-4">
+          <h2 className="text-2xl font-bold">Admin Dashboard</h2>
+          <p className="mt-2">Welcome, Admin!</p>
+        </div>
+        <nav className="mt-4">
+          <ul>
+            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+              Dashboard
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+              Orders
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+              Products
+            </li>
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handeCustomerManage}
+            >
+              Customers
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+              Reports
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+              Settings
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </>
+  );
+};
+
+export default DashBoardSidBar;
