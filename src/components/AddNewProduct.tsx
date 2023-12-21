@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
 import { useNavigate } from "react-router-dom";
@@ -11,20 +11,55 @@ const ProductManagement: React.FC = () => {
   const [productcategory, setProductCategory] = useState("");
   const [productprice, setProductPrice] = useState("");
   const [productqty, setProductQty] = useState("");
-  const [productimage, setProductImage] = useState("");
+  const [productimage, setProductImage] = useState<File | undefined>(undefined);
   const [productstatus, setProductStatus] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("productname", productname);
+      formData.append("description", description);
+      formData.append("productcategory", productcategory);
+      formData.append("productprice", parseFloat(productprice).toString()); // Convert to a string if required
+      formData.append("productqty", parseInt(productqty).toString()); // Convert to a string if required
+      formData.append("productimage", productimage || "");
+      formData.append("productstatus", productstatus);
+      // formData.append("addedBy", "611234567890123456789012"); // Replace this with a valid user ID from your database
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data", // Set content type to multipart form-data
+      };
+
+      const response = await axios.post(
+        "http://localhost:8090/api/v1/product/createProduct",
+        formData,
+        {
+          headers,
+        }
+      );
+
+      if (response.status === 201) {
+        console.log("Product added successfully!");
+      } else {
+        console.error("Failed to add product");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
-  function handleImageUpload(): void {
-    throw new Error("Function not implemented.");
-  }
-
-  function handleCancel() {
+  const handleCancel = () => {
     navigate("/productManagement");
-  }
+  };
 
   return (
     <div className="flex h-screen">
@@ -107,7 +142,12 @@ const ProductManagement: React.FC = () => {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => setProductImage(e.target.value)}
+                onChange={(e) => {
+                  const file: any = e.target.files?.[0];
+                  if (file) {
+                    setProductImage(file);
+                  }
+                }}
                 className="mt-2"
               />
             </div>
