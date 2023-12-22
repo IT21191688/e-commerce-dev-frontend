@@ -185,7 +185,7 @@ export default function NavBar() {
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link" href="/viewCourses">
+                    <a className="nav-link" href="/userProducts">
                       <FontAwesomeIcon icon={faGraduationCap} /> Products
                     </a>
                   </li>

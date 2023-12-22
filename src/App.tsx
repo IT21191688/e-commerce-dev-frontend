@@ -12,6 +12,7 @@ import CustomerManagement from "./components/CustomerManagement";
 import ProductManagement from "./components/ProductManagement";
 import AddNewProduct from "./components/AddNewProduct";
 import EditProduct from "./components/EditProduct";
+import UserProducts from "./components/UserProduct";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -46,6 +47,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/userHome" element={<UserHome />} />
+            <Route path="/userProducts" element={<UserProducts />} />
           </Routes>
         </Router>
       ) : null}

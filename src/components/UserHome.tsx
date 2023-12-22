@@ -1,127 +1,41 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import sliderImage1 from "../assets/sliderImage1.jpg";
 import sliderImage2 from "../assets/sliderImage2.jpg";
 import sliderImage3 from "../assets/sliderImage3.jpg";
 import Footer from "./Footer";
 
 const UserHome: React.FC = () => {
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    displayProductsInRows();
-    displayFeedbacks();
+    fetchProducts();
   }, []);
 
-  function displayProductsInRows() {
-    const products = [
-      { id: 1, name: "Product 1" },
-      { id: 2, name: "Product 2" },
-      { id: 3, name: "Product 3" },
-      { id: 4, name: "Product 4" },
-      { id: 5, name: "Product 5" },
-      { id: 6, name: "Product 6" },
-      { id: 7, name: "Product 7" },
-      { id: 8, name: "Product 8" },
-      { id: 9, name: "Product 9" },
-      { id: 10, name: "Product 10" },
-      { id: 11, name: "Product 11" },
-      { id: 12, name: "Product 12" },
-      { id: 13, name: "Product 13" },
-      { id: 14, name: "Product 14" },
-      { id: 15, name: "Product 15" },
-      { id: 16, name: "Product 16" },
-    ];
-
-    let currentProductIndex = 0;
-
-    function displayProducts() {
-      const row1 = document.getElementById("row1");
-      const row2 = document.getElementById("row2");
-
-      if (!row1 || !row2) {
-        console.error("Row elements not found");
+  const fetchProducts = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
         return;
       }
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
 
-      row1.innerHTML = "";
-      row2.innerHTML = "";
+      const response = await axios.get(
+        "http://localhost:8090/api/v1/product/getAllProduct",
+        { headers }
+      );
 
-      for (let i = 0; i < 10; i++) {
-        const product = products[currentProductIndex];
-        const item = document.createElement("div");
-        item.classList.add(
-          "w-40",
-          "h-40",
-          "bg-gray-200",
-          "m-4",
-          "flex",
-          "items-center",
-          "justify-center",
-          "rounded-md"
-        );
-        item.textContent = product.name;
+      console.log(response.data.data);
 
-        if (i < 5) {
-          row1.appendChild(item);
-        } else {
-          row2.appendChild(item);
-        }
-
-        currentProductIndex = (currentProductIndex + 1) % products.length;
-      }
+      // Set the retrieved products in the state
+      setProducts(response.data.data);
+    } catch (error) {
+      console.error("Error fetching product data:", error);
     }
-
-    displayProducts();
-
-    setInterval(displayProducts, 5000); // Change products every 5 seconds
-  }
-
-  // Call the function to display products in rows
-  displayProductsInRows();
-  function displayFeedbacks() {
-    const feedbackData = [
-      {
-        customer: "John Doe",
-        product: "Product A",
-        feedback: "Excellent service! Highly recommended!",
-      },
-      // Add more feedback objects as needed
-    ];
-
-    let currentFeedbackIndex = 0;
-
-    function displayFeedback() {
-      const feedbackElement = document.getElementById("feedback");
-
-      if (!feedbackElement) {
-        console.error("Feedback element not found");
-        return;
-      }
-
-      const customerName = document.getElementById("customer-name");
-      const productName = document.getElementById("product-name");
-      const feedbackText = document.getElementById("feedback-text");
-
-      const { customer, product, feedback } =
-        feedbackData[currentFeedbackIndex];
-
-      if (customerName) {
-        customerName.textContent = customer;
-      }
-      if (productName) {
-        productName.textContent = product;
-      }
-      if (feedbackText) {
-        feedbackText.textContent = feedback;
-      }
-
-      currentFeedbackIndex = (currentFeedbackIndex + 1) % feedbackData.length;
-    }
-
-    displayFeedback();
-
-    setInterval(displayFeedback, 5000);
-  }
-
-  displayFeedbacks();
+  };
 
   return (
     <>
@@ -200,12 +114,71 @@ const UserHome: React.FC = () => {
           homepage, designed to cater to your needs and elevate your shopping
           experience.
         </h3>
+        <div className="mt-5">
+          <div className="flex flex-wrap justify-center" id="row1">
+            {products.slice(0, 4).map((product: any) => (
+              <div
+                key={product._id}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8"
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden justify-center items-center">
+                  <center>
+                    <img
+                      src={product.productimage}
+                      alt="Product Image"
+                      className="w-auto h-40 object-cover"
+                    />
+                  </center>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold mb-2">
+                      {product.productname}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p className="text-gray-800 font-bold mb-2">
+                      ${product.productprice}
+                    </p>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                      More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-        <div className="flex flex-col items-center">
-          <div className="flex flex-wrap justify-center" id="row1"></div>
-          <div className="flex flex-wrap justify-center" id="row2"></div>
+          <div className="flex flex-wrap justify-center" id="row2">
+            {products.slice(4, 8).map((product: any) => (
+              <div
+                key={product._id}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8"
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <center>
+                    <img
+                      src={product.productimage}
+                      alt="Product Image"
+                      className="w-auto h-40 object-cover"
+                    />
+                  </center>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold mb-2">
+                      {product.productname}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p className="text-gray-800 font-bold mb-2">
+                      ${product.productprice}
+                    </p>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                      More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
       <div className="container h-full mt-5 pb-30">
         <h1 className="text-center text-black font-inter font-bold text-2xl md:text-4xl">
           WHAT IS SAYS OUR CUSTOMER
