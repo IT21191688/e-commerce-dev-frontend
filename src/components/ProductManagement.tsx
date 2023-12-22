@@ -41,12 +41,9 @@ const ProductManagement: React.FC = () => {
 
   // Handle editing a product
   const handleEdit = (product: any) => {
-    // Implement the logic to handle editing a product here
-    // You can set the selected product in state and open a modal for editing
-    console.log("Edit product:", product);
+    navigate(`/editProduct/${product._id}`);
   };
 
-  // Function to filter products based on search term
   const filteredProducts = products.filter((product: any) =>
     product.productname.toLowerCase().includes(searchTerm.toLowerCase())
   );

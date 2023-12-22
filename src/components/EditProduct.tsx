@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddNewProduct: React.FC = () => {
+const EditProduct: React.FC = () => {
   const navigate = useNavigate();
+  const { productId } = useParams();
+
+  useEffect(() => {
+    //fetchCustomers();
+    fetchProductDetails();
+  }, []);
 
   const [productname, setProductName] = useState("");
   const [description, setDescription] = useState("");
@@ -13,6 +19,39 @@ const AddNewProduct: React.FC = () => {
   const [productqty, setProductQty] = useState("");
   const [productimage, setProductImage] = useState<File | undefined>(undefined);
   const [productstatus, setProductStatus] = useState("");
+
+  const fetchProductDetails = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(
+        `http://localhost:8090/api/v1/product/getOneProduct/${productId}`, // Replace with your endpoint to get product details by ID
+        {
+          headers,
+        }
+      );
+
+      const productDetails = response.data.data; // Assuming the response contains the product details
+      // Set product details into state
+      setProductName(productDetails.productname);
+      setDescription(productDetails.description);
+      setProductCategory(productDetails.productcategory);
+      setProductPrice(productDetails.productprice.toString());
+      setProductQty(productDetails.productqty.toString());
+      setProductImage(productDetails.productimage);
+      setProductStatus(productDetails.productstatus);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -24,7 +63,6 @@ const AddNewProduct: React.FC = () => {
       formData.append("productcategory", productcategory);
       formData.append("productprice", parseFloat(productprice).toString());
       formData.append("productqty", parseInt(productqty).toString());
-      formData.append("productimage", productimage || "");
       formData.append("productstatus", productstatus);
 
       const token = localStorage.getItem("token");
@@ -39,17 +77,19 @@ const AddNewProduct: React.FC = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8090/api/v1/product/createProduct",
+        `http://localhost:8090/api/v1/product/updateProduct/${productId}`,
         formData,
         {
           headers,
         }
       );
 
-      //console.log(response);
+      console.log(response);
 
-      if (response.status === 201) {
-        alert("Product Add Successfully");
+      if ((response.data.isSuccessful = true)) {
+        // console.log("Product added successfully!");
+        alert("Product Edit successfully!");
+
         navigate("/productManagement");
         window.location.reload();
       }
@@ -67,7 +107,7 @@ const AddNewProduct: React.FC = () => {
       <DashBoardSidBar />
       <main className="flex-1 p-5">
         <div className="flex justify-between mb-3">
-          <h1 className="text-3xl font-bold">Add New Product</h1>
+          <h1 className="text-3xl font-bold">Edit Product Details</h1>
         </div>
         <div className="container mx-auto mt-3">
           <form>
@@ -78,7 +118,7 @@ const AddNewProduct: React.FC = () => {
               <input
                 type="text"
                 name="productname"
-                // value={product.productname}
+                value={productname}
                 onChange={(e) => setProductName(e.target.value)}
                 className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
                 required
@@ -90,7 +130,7 @@ const AddNewProduct: React.FC = () => {
               </label>
               <textarea
                 name="description"
-                // value={product.description}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
                 rows={2}
@@ -104,7 +144,7 @@ const AddNewProduct: React.FC = () => {
               <input
                 type="text"
                 name="productcategory"
-                // value={product.productcategory}
+                value={productcategory}
                 onChange={(e) => setProductCategory(e.target.value)}
                 className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
                 required
@@ -117,7 +157,7 @@ const AddNewProduct: React.FC = () => {
               <input
                 type="number"
                 name="productprice"
-                // value={product.productprice}
+                value={productprice}
                 onChange={(e) => setProductPrice(e.target.value)}
                 className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
                 required
@@ -130,35 +170,20 @@ const AddNewProduct: React.FC = () => {
               <input
                 type="number"
                 name="productqty"
-                // value={product.productqty}
+                value={productqty}
                 onChange={(e) => setProductQty(e.target.value)}
                 className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
                 required
               />
             </div>
-            <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700">
-                Product Image:
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file: any = e.target.files?.[0];
-                  if (file) {
-                    setProductImage(file);
-                  }
-                }}
-                className="mt-2"
-              />
-            </div>
+
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700">
                 Product Status:
               </label>
               <select
                 name="productstatus"
-                // value={product.productstatus}
+                value={productstatus}
                 onChange={(e) => setProductStatus(e.target.value)}
                 className="form-select border-gray-300 rounded-md w-full p-2 mt-1"
               >
@@ -172,7 +197,7 @@ const AddNewProduct: React.FC = () => {
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
                 onClick={handleSubmit}
               >
-                Add Product
+                Edit Product
               </button>
               <button
                 type="button"
@@ -189,4 +214,4 @@ const AddNewProduct: React.FC = () => {
   );
 };
 
-export default AddNewProduct;
+export default EditProduct;

@@ -125,7 +125,10 @@ const CustomerManagement: React.FC = () => {
       <DashBoardSidBar />
       <main className="flex-1 p-5">
         <h1 className="text-3xl font-bold">Customer Management</h1>
-        <div className="container mx-auto mt-5">
+        <div
+          className="container mx-auto mt-5"
+          style={{ maxHeight: "500px", overflowY: "auto" }}
+        >
           <input
             type="text"
             placeholder="Search by First Name"
