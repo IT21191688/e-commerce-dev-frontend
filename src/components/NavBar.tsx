@@ -196,6 +196,12 @@ export default function NavBar() {
                     </a>
                   </li>
 
+                  <li className="nav-item">
+                    <a className="nav-link" href="/cartView">
+                      <FontAwesomeIcon icon={faFileCode} /> Cart
+                    </a>
+                  </li>
+
                   <li
                     className="nav-item relative group"
                     onMouseEnter={toggleDropdown}

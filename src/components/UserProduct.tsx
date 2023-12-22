@@ -45,6 +45,45 @@ const UserProducts: React.FC = () => {
     }
   };
 
+  const addToCart = async (productId: string) => {
+    try {
+      const formData = {
+        productid: productId,
+        quantity: 1,
+      };
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+
+      // console.log(token);
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.post(
+        "http://localhost:8090/api/v1/cart/addCart",
+        formData,
+        {
+          headers,
+        }
+      );
+
+      //console.log(response);
+
+      if (response.status === 201) {
+        alert("Product Add to cart Successfully");
+        navigate("/userProducts");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+  };
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
     filterProducts(event.target.value, categoryFilter, priceFilter);
@@ -122,12 +161,13 @@ const UserProducts: React.FC = () => {
               <div
                 key={product._id}
                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8 cursor-pointer"
-                onClick={() => {
-                  handleProduct(product._id);
-                }}
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <center>
+                  <center
+                    onClick={() => {
+                      handleProduct(product._id);
+                    }}
+                  >
                     <img
                       src={product.productimage}
                       alt="Product Image"
@@ -142,8 +182,13 @@ const UserProducts: React.FC = () => {
                     <p className="text-gray-800 font-bold mb-2">
                       ${product.productprice}
                     </p>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                      More
+                    <button
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => {
+                        addToCart(product._id);
+                      }}
+                    >
+                      Add To One
                     </button>
                   </div>
                 </div>
