@@ -17,7 +17,7 @@ const EditProduct: React.FC = () => {
   const [productcategory, setProductCategory] = useState("");
   const [productprice, setProductPrice] = useState("");
   const [productqty, setProductQty] = useState("");
-  const [productimage, setProductImage] = useState<File | undefined>(undefined);
+  //const [productimage, setProductImage] = useState<File | undefined>(undefined);
   const [productstatus, setProductStatus] = useState("");
 
   const fetchProductDetails = async () => {
@@ -46,7 +46,7 @@ const EditProduct: React.FC = () => {
       setProductCategory(productDetails.productcategory);
       setProductPrice(productDetails.productprice.toString());
       setProductQty(productDetails.productqty.toString());
-      setProductImage(productDetails.productimage);
+      //  setProductImage(productDetails.productimage);
       setProductStatus(productDetails.productstatus);
     } catch (error) {
       console.error("Error fetching product details:", error);
