@@ -13,6 +13,7 @@ import ProductManagement from "./components/ProductManagement";
 import AddNewProduct from "./components/AddNewProduct";
 import EditProduct from "./components/EditProduct";
 import UserProducts from "./components/UserProduct";
+import UserProductView from "./components/UserProductView";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -48,6 +49,10 @@ function App() {
           <Routes>
             <Route path="/userHome" element={<UserHome />} />
             <Route path="/userProducts" element={<UserProducts />} />
+            <Route
+              path="/productView/:productId"
+              element={<UserProductView />}
+            />
           </Routes>
         </Router>
       ) : null}

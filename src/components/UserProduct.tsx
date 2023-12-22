@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const UserProducts: React.FC = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -36,7 +39,7 @@ const UserProducts: React.FC = () => {
       // Set the retrieved products in the state
       setProducts(response.data.data);
       setFilteredProducts(response.data.data);
-      alert(response.data.data.length);
+      //  alert(response.data.data.length);
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
@@ -78,6 +81,10 @@ const UserProducts: React.FC = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  function handleProduct(productId: string) {
+    navigate(`/productView/${productId}`);
+  }
+
   return (
     <>
       <div className="container">
@@ -114,7 +121,10 @@ const UserProducts: React.FC = () => {
             {currentProducts.map((product: any, index: number) => (
               <div
                 key={product._id}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8"
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8 cursor-pointer"
+                onClick={() => {
+                  handleProduct(product._id);
+                }}
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                   <center>
