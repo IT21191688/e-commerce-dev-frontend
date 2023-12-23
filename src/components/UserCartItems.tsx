@@ -62,6 +62,8 @@ const UserCartItems: React.FC = () => {
         Authorization: `Bearer ${token}`,
       };
 
+      //console.log(token);
+
       const response = await axios.get(
         "http://localhost:8090/api/v1/cart/getCartItemsUserId",
         { headers }

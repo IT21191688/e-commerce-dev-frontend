@@ -191,7 +191,7 @@ export default function NavBar() {
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link" href="/allpost">
+                    <a className="nav-link" href="/userContactUs">
                       <FontAwesomeIcon icon={faFileCode} /> Contact Us
                     </a>
                   </li>

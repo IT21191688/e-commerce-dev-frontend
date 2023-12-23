@@ -28,7 +28,7 @@ const UserHome: React.FC = () => {
         { headers }
       );
 
-      console.log(response.data.data);
+      //console.log(response.data.data);
 
       // Set the retrieved products in the state
       setProducts(response.data.data);
