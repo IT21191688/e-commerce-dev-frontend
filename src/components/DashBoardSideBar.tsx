@@ -12,6 +12,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/productManagement");
   };
 
+  const handleOrderManagement = () => {
+    navigate("/orderManagement");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -25,7 +29,10 @@ const DashBoardSidBar: React.FC = () => {
             <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
               Dashboard
             </li>
-            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handleOrderManagement}
+            >
               Orders
             </li>
             <li

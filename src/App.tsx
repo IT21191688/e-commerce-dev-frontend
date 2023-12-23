@@ -17,6 +17,7 @@ import UserProductView from "./components/UserProductView";
 import UserCartItems from "./components/UserCartItems";
 import UserOrderPage from "./components/UserOrderPage";
 import AboutUs from "./components/AuboutUs";
+import OrderManagement from "./components/OrderManagement";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -45,6 +46,7 @@ function App() {
             <Route path="/productManagement" element={<ProductManagement />} />
             <Route path="/addNewProduct" element={<AddNewProduct />} />
             <Route path="/editProduct/:productId" element={<EditProduct />} />
+            <Route path="/orderManagement" element={<OrderManagement />} />
           </Routes>
         </Router>
       ) : user === "user" ? (
