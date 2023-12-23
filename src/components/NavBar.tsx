@@ -10,7 +10,7 @@ import {
   faFileCode,
   faSignInAlt,
   faUserPlus,
-  faBook,
+  //faBook,
   faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,7 +18,7 @@ export default function NavBar() {
   // const [user, setUser] = useState({});
   const [role, setRole] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDropdownOpenC, setIsDropdownOpenC] = useState(false);
+  //const [isDropdownOpenC, setIsDropdownOpenC] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -28,25 +28,13 @@ export default function NavBar() {
     setIsDropdownOpen(false);
   };
 
-  const toggleDropdownC = () => {
-    setIsDropdownOpenC(!isDropdownOpen);
-  };
-
-  const closeDropdownC = () => {
-    setIsDropdownOpenC(false);
-  };
-
   const logOut = () => {
     localStorage.clear();
     window.location.href = "/login";
   };
 
   useEffect(() => {
-    //const data = localStorage.getItem("user");
-    // setUser(data ? JSON.parse(data) : null);
     setRole(localStorage.getItem("role") || "");
-
-    //alert(localStorage.getItem("role"));
   }, []);
 
   return (
