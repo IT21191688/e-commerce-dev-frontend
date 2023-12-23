@@ -179,7 +179,7 @@ export default function NavBar() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/editor">
+                    <a className="nav-link" href="/aboutUs">
                       <FontAwesomeIcon icon={faCode} /> About
                     </a>
                   </li>

@@ -16,6 +16,7 @@ import UserProducts from "./components/UserProduct";
 import UserProductView from "./components/UserProductView";
 import UserCartItems from "./components/UserCartItems";
 import UserOrderPage from "./components/UserOrderPage";
+import AboutUs from "./components/AuboutUs";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -55,6 +56,7 @@ function App() {
               path="/productView/:productId"
               element={<UserProductView />}
             />
+            <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/cartView" element={<UserCartItems />} />
             <Route path="/orderPage" element={<UserOrderPage />} />
           </Routes>
