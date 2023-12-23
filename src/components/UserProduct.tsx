@@ -124,6 +124,10 @@ const UserProducts: React.FC = () => {
     navigate(`/productView/${productId}`);
   }
 
+  function handleMore(_id: string) {
+    navigate(`/productView/${_id}`);
+  }
+
   return (
     <>
       <div className="container">
@@ -182,14 +186,25 @@ const UserProducts: React.FC = () => {
                     <p className="text-gray-800 font-bold mb-2">
                       ${product.productprice}
                     </p>
-                    <button
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => {
-                        addToCart(product._id);
-                      }}
-                    >
-                      Add To One
-                    </button>
+
+                    <div className="justify-center">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+                        onClick={() => {
+                          addToCart(product._id);
+                        }}
+                      >
+                        Add Cart
+                      </button>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          handleMore(product._id);
+                        }}
+                      >
+                        More
+                      </button>
+                    </div>
                   </div>
                 </div>
                 {index > 0 && (index + 1) % 4 === 0 && (

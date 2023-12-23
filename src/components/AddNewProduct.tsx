@@ -12,7 +12,7 @@ const AddNewProduct: React.FC = () => {
   const [productprice, setProductPrice] = useState("");
   const [productqty, setProductQty] = useState("");
   const [productimage, setProductImage] = useState<File | undefined>(undefined);
-  const [productstatus, setProductStatus] = useState("");
+  const [productstatus] = useState("Active");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -101,15 +101,23 @@ const AddNewProduct: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Product Category:
               </label>
-              <input
-                type="text"
+              <select
                 name="productcategory"
                 // value={product.productcategory}
                 onChange={(e) => setProductCategory(e.target.value)}
-                className="form-control border-gray-300 rounded-md w-full p-2 mt-1"
+                className="form-select border-gray-300 rounded-md w-full p-2 mt-1"
                 required
-              />
+              >
+                <option value="">Select a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Food & Beverages">Food & Beverages</option>
+                <option value="Home">Home</option>
+                <option value="Other">Other</option>
+                {/* Add more options for different categories */}
+              </select>
             </div>
+
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700">
                 Product Price:
@@ -152,20 +160,22 @@ const AddNewProduct: React.FC = () => {
                 className="mt-2"
               />
             </div>
-            <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700">
-                Product Status:
-              </label>
-              <select
-                name="productstatus"
-                // value={product.productstatus}
-                onChange={(e) => setProductStatus(e.target.value)}
-                className="form-select border-gray-300 rounded-md w-full p-2 mt-1"
-              >
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-              </select>
-            </div>
+            {/*
+              <div className="mb-3">
+                <label className="block text-sm font-medium text-gray-700">
+                  Product Status:
+                </label>
+                <select
+                  name="productstatus"
+                  // value={product.productstatus}
+                  onChange={(e) => setProductStatus(e.target.value)}
+                  className="form-select border-gray-300 rounded-md w-full p-2 mt-1"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+              */}
             <div className="flex justify-center">
               <button
                 type="submit"
