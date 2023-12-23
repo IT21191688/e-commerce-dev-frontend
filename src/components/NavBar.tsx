@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function NavBar() {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [role, setRole] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpenC, setIsDropdownOpenC] = useState(false);
@@ -42,8 +42,8 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
-    setUser(data ? JSON.parse(data) : null);
+    //const data = localStorage.getItem("user");
+    // setUser(data ? JSON.parse(data) : null);
     setRole(localStorage.getItem("role") || "");
 
     //alert(localStorage.getItem("role"));

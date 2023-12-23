@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
-const UserOrderPage = () => {
+const UserOrderPage: React.FC = () => {
   const navigate = useNavigate();
   const [showCreditCard, setShowCreditCard] = useState(false);
   const [showPayPal, setShowPayPal] = useState(false);
