@@ -73,7 +73,7 @@ const CustomerManagement: React.FC = () => {
         role: editedRole,
       };
 
-      console.log(updatedCustomerData);
+      //console.log(updatedCustomerData);
 
       const token = localStorage.getItem("token");
       if (!token) {

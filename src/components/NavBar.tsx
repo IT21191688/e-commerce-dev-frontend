@@ -70,52 +70,8 @@ export default function NavBar() {
                 <>
                   <li className="nav-item">
                     <a className="nav-link" href="/adminHome">
-                      <FontAwesomeIcon icon={faHome} /> Admin Home
+                      <FontAwesomeIcon icon={faHome} /> Dashboard
                     </a>
-                  </li>
-
-                  <li
-                    className="nav-item relative group"
-                    onMouseEnter={toggleDropdownC}
-                    onMouseLeave={closeDropdownC}
-                  >
-                    <button className="nav-link focus:outline-none">
-                      <FontAwesomeIcon icon={faBook} /> Course & Tutes
-                      <FontAwesomeIcon
-                        icon={faChevronDown}
-                        className={`ml-1 fas fa-chevron-down ${
-                          isDropdownOpenC ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                    <div
-                      className={`${
-                        isDropdownOpenC
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-95"
-                      } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out ${
-                        isDropdownOpenC ? "scale-y-100" : "scale-y-0"
-                      }`}
-                    >
-                      <ul className="bg-white text-black border border-gray-200 rounded-lg">
-                        <li>
-                          <a
-                            className="block px-4 py-2 hover:bg-gray-200"
-                            href={"/getCourseAdmin"}
-                          >
-                            View Course & Tutes
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="block px-4 py-2 hover:bg-gray-200"
-                            href={"/createCourse"}
-                          >
-                            Create Course & Tutes
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                   </li>
 
                   <li

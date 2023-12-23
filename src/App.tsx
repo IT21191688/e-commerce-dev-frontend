@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import LoginPage from "./components/LoginPage";
@@ -19,6 +19,7 @@ import UserOrderPage from "./components/UserOrderPage";
 import AboutUs from "./components/AuboutUs";
 import OrderManagement from "./components/OrderManagement";
 import UserContactUs from "./components/UserContactUs";
+import InquearyManagement from "./components/InquearyManagement";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -27,11 +28,12 @@ function App() {
     setUser(localStorage.getItem("role") ? localStorage.getItem("role") : "");
   });
 
+  /*
   const handleBeforeUnload = () => {
     // Clear the user data from localStorage when the browser is closed
     localStorage.removeItem("role");
   };
-
+*/
   return (
     <>
       <NavBar />
@@ -48,6 +50,7 @@ function App() {
             <Route path="/addNewProduct" element={<AddNewProduct />} />
             <Route path="/editProduct/:productId" element={<EditProduct />} />
             <Route path="/orderManagement" element={<OrderManagement />} />
+            <Route path="/inquaryManagement" element={<InquearyManagement />} />
           </Routes>
         </Router>
       ) : user === "user" ? (
