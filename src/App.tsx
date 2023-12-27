@@ -19,6 +19,7 @@ import UserOrderPage from "./components/UserOrderPage";
 import AboutUs from "./components/AuboutUs";
 import OrderManagement from "./components/OrderManagement";
 import InquearyManagement from "./components/InquearyManagement";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -64,6 +65,7 @@ function App() {
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/cartView" element={<UserCartItems />} />
             <Route path="/orderPage" element={<UserOrderPage />} />
+            <Route path="/userProfile" element={<UserProfile />} />
           </Routes>
         </Router>
       ) : null}

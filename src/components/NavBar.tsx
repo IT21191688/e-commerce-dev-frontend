@@ -173,7 +173,7 @@ export default function NavBar() {
                         <li>
                           <a
                             className="block px-4 py-2 hover:bg-gray-200"
-                            href={"/profile"}
+                            href={"/userProfile"}
                           >
                             Profile
                           </a>
