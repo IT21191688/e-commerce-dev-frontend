@@ -267,7 +267,7 @@ const UserProfile: React.FC = () => {
                 <th className="px-4 py-2">Order ID</th>
                 <th className="px-4 py-2">Order Date</th>
                 <th className="px-4 py-2">Order Status</th>
-                <th className="px-4 py-2">Total</th>
+                <th className="px-4 py-2">Total Price</th>
               </tr>
             </thead>
             <tbody>

@@ -94,14 +94,7 @@ export default function NavBar() {
                             Profile
                           </a>
                         </li>
-                        <li>
-                          <a
-                            className="block px-4 py-2 hover:bg-gray-200"
-                            href={"/resetPassword"}
-                          >
-                            Change Password
-                          </a>
-                        </li>
+
                         <li>
                           <button
                             className="block px-4 py-2 hover:bg-gray-200"
@@ -131,12 +124,6 @@ export default function NavBar() {
                   <li className="nav-item">
                     <a className="nav-link" href="/userProducts">
                       <FontAwesomeIcon icon={faGraduationCap} /> Products
-                    </a>
-                  </li>
-
-                  <li className="nav-item">
-                    <a className="nav-link" href="/userContactUs">
-                      <FontAwesomeIcon icon={faFileCode} /> Contact Us
                     </a>
                   </li>
 
@@ -176,14 +163,6 @@ export default function NavBar() {
                             href={"/userProfile"}
                           >
                             Profile
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="block px-4 py-2 hover:bg-gray-200"
-                            href={"/resetPassword"}
-                          >
-                            Change Password
                           </a>
                         </li>
                         <li>
