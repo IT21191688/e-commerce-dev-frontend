@@ -18,7 +18,6 @@ import UserCartItems from "./components/UserCartItems";
 import UserOrderPage from "./components/UserOrderPage";
 import AboutUs from "./components/AuboutUs";
 import OrderManagement from "./components/OrderManagement";
-import UserContactUs from "./components/UserContactUs";
 import InquearyManagement from "./components/InquearyManagement";
 
 function App() {
@@ -65,7 +64,6 @@ function App() {
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/cartView" element={<UserCartItems />} />
             <Route path="/orderPage" element={<UserOrderPage />} />
-            <Route path="/userContactUs" element={<UserContactUs />} />
           </Routes>
         </Router>
       ) : null}
