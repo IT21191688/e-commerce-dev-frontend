@@ -21,6 +21,7 @@ import OrderManagement from "./components/OrderManagement";
 import InquearyManagement from "./components/InquearyManagement";
 import UserProfile from "./components/UserProfile";
 import UserReview from "./components/UserReview";
+import ReviewManagement from "./components/ReviewManagement";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -52,6 +53,7 @@ function App() {
             <Route path="/editProduct/:productId" element={<EditProduct />} />
             <Route path="/orderManagement" element={<OrderManagement />} />
             <Route path="/inquaryManagement" element={<InquearyManagement />} />
+            <Route path="/reviewManagement" element={<ReviewManagement />} />
           </Routes>
         </Router>
       ) : user === "user" ? (

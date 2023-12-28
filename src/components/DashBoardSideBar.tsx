@@ -20,6 +20,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/inquaryManagement");
   };
 
+  const handleReviewManage = () => {
+    navigate("/reviewManagement");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -56,6 +60,12 @@ const DashBoardSidBar: React.FC = () => {
               onClick={handleInquearyManage}
             >
               Inqueary
+            </li>
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handleReviewManage}
+            >
+              Reviews
             </li>
             <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
               Reports
