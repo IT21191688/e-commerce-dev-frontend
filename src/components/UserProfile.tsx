@@ -341,6 +341,20 @@ const UserProfile: React.FC = () => {
                   {selectedOrder.orderstatus}
                 </div>
               </div>
+              <br />
+              <button
+                onClick={() => {
+                  // Add review logic here
+                }}
+                disabled={selectedOrder?.orderstatus !== "Delivered"} // Disable the button if the order is not delivered
+                className={`bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none hover:bg-blue-700 ${
+                  selectedOrder?.orderstatus !== "Delivered"
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                Add Review
+              </button>
             </div>
           )}
         </div>

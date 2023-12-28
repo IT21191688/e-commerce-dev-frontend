@@ -101,7 +101,6 @@ const InquiryManagement: React.FC = () => {
                   <td className="border px-4 py-2">{inquiry.userId.email}</td>
                   <td className="border px-4 py-2">{inquiry.title}</td>
                   <td className="border px-4 py-2">{inquiry.message}</td>
-                  <td className="border px-4 py-2">{inquiry.status}</td>
                   <td className="border px-4 py-2">
                     <select
                       value={inquiry.status}

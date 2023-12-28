@@ -134,9 +134,27 @@ const UserHome: React.FC = () => {
                       {product.productname}
                     </h3>
                     <p className="text-gray-600 mb-4">{product.description}</p>
-                    <p className="text-gray-800 font-bold mb-2">
-                      ${product.productprice}
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p
+                        className={`text-gray-800 font-bold mb-2 ${
+                          product.productqty <= 0 ? "text-red-500" : "" // If quantity is 0 or negative, apply red text color
+                        }`}
+                      >
+                        Rs{product.productprice}
+                      </p>
+                      <p
+                        className={`text-gray-800 font-bold mb-2 ${
+                          product.productqty <= 0
+                            ? "text-red-500"
+                            : product.productqty < 5
+                            ? "text-red-500"
+                            : "" // Apply red text color if quantity is less than 5 or 0
+                        }`}
+                      >
+                        {product.productqty}{" "}
+                        {product.productqty <= 0 ? "Sold Out" : ""}
+                      </p>
+                    </div>
                     <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                       More
                     </button>
@@ -165,9 +183,27 @@ const UserHome: React.FC = () => {
                       {product.productname}
                     </h3>
                     <p className="text-gray-600 mb-4">{product.description}</p>
-                    <p className="text-gray-800 font-bold mb-2">
-                      ${product.productprice}
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p
+                        className={`text-gray-800 font-bold mb-2 ${
+                          product.productqty <= 0 ? "text-red-500" : "" // If quantity is 0 or negative, apply red text color
+                        }`}
+                      >
+                        Rs{product.productprice}
+                      </p>
+                      <p
+                        className={`text-gray-800 font-bold mb-2 ${
+                          product.productqty <= 0
+                            ? "text-red-500"
+                            : product.productqty < 5
+                            ? "text-red-500"
+                            : "" // Apply red text color if quantity is less than 5 or 0
+                        }`}
+                      >
+                        {product.productqty}{" "}
+                        {product.productqty <= 0 ? "Sold Out" : ""}
+                      </p>
+                    </div>
                     <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                       More
                     </button>
