@@ -4,8 +4,11 @@ import sliderImage1 from "../assets/sliderImage1.jpg";
 import sliderImage2 from "../assets/sliderImage2.jpg";
 import sliderImage3 from "../assets/sliderImage3.jpg";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const UserHome: React.FC = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
 
@@ -121,6 +124,10 @@ const UserHome: React.FC = () => {
     );
   };
 
+  function handleProduct(productId: string) {
+    navigate(`/productView/${productId}`);
+  }
+
   return (
     <>
       <div className="container">
@@ -210,18 +217,28 @@ const UserHome: React.FC = () => {
                     <img
                       src={product.productimage}
                       alt="Product Image"
-                      className="w-auto h-40 object-cover"
+                      className="w-auto h-36 object-cover"
                     />
                   </center>
                   <div className="p-4">
                     <h3 className="text-lg font-semibold mb-2">
                       {product.productname}
                     </h3>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p
+                      className="text-gray-600 mb-4"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {product.description}
+                    </p>
                     <div className="flex items-center justify-between">
                       <p
                         className={`text-gray-800 font-bold mb-2 ${
-                          product.productqty <= 0 ? "text-red-500" : "" // If quantity is 0 or negative, apply red text color
+                          product.productqty <= 0 ? "text-red-500" : ""
                         }`}
                       >
                         Rs{product.productprice}
@@ -232,14 +249,19 @@ const UserHome: React.FC = () => {
                             ? "text-red-500"
                             : product.productqty < 5
                             ? "text-red-500"
-                            : "" // Apply red text color if quantity is less than 5 or 0
+                            : ""
                         }`}
                       >
                         {product.productqty}{" "}
                         {product.productqty <= 0 ? "Sold Out" : ""}
                       </p>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    <button
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => {
+                        handleProduct(product._id);
+                      }}
+                    >
                       More
                     </button>
                   </div>
@@ -254,23 +276,33 @@ const UserHome: React.FC = () => {
                 key={product._id}
                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8"
               >
-                <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="bg-white rounded-lg shadow-md overflow-hidden justify-center items-center">
                   <center>
                     <img
                       src={product.productimage}
                       alt="Product Image"
-                      className="w-auto h-40 object-cover"
+                      className="w-auto h-36 object-cover"
                     />
                   </center>
                   <div className="p-4">
                     <h3 className="text-lg font-semibold mb-2">
                       {product.productname}
                     </h3>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p
+                      className="text-gray-600 mb-4"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {product.description}
+                    </p>
                     <div className="flex items-center justify-between">
                       <p
                         className={`text-gray-800 font-bold mb-2 ${
-                          product.productqty <= 0 ? "text-red-500" : "" // If quantity is 0 or negative, apply red text color
+                          product.productqty <= 0 ? "text-red-500" : ""
                         }`}
                       >
                         Rs{product.productprice}
@@ -281,14 +313,19 @@ const UserHome: React.FC = () => {
                             ? "text-red-500"
                             : product.productqty < 5
                             ? "text-red-500"
-                            : "" // Apply red text color if quantity is less than 5 or 0
+                            : ""
                         }`}
                       >
                         {product.productqty}{" "}
                         {product.productqty <= 0 ? "Sold Out" : ""}
                       </p>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    <button
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => {
+                        handleProduct(product._id);
+                      }}
+                    >
                       More
                     </button>
                   </div>

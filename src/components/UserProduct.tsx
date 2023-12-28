@@ -101,10 +101,26 @@ const UserProducts: React.FC = () => {
 
   const filterProducts = (search: string, category: string, price: string) => {
     let filtered = products.filter((product: any) => {
+      const parsedPrice = parseFloat(product.productprice);
+
+      const isPriceInRange = (priceRange: string) => {
+        if (priceRange === "") return true;
+
+        const [min, max] = priceRange
+          .split("-")
+          .map((val) => parseFloat(val.replace(">", "")));
+
+        if (priceRange.startsWith(">")) {
+          return parsedPrice > min;
+        } else {
+          return parsedPrice >= min && parsedPrice <= max;
+        }
+      };
+
       return (
         product.productname.toLowerCase().includes(search.toLowerCase()) &&
         (category === "" || product.productcategory === category) &&
-        (price === "" || product.productprice <= parseInt(price))
+        isPriceInRange(price)
       );
     });
     setFilteredProducts(filtered);
@@ -128,6 +144,23 @@ const UserProducts: React.FC = () => {
     navigate(`/productView/${_id}`);
   }
 
+  const CATEGORY_TYPE = [
+    "All Categories",
+    "Electronics",
+    "Clothing",
+    "Food & Beverages",
+    "Home",
+    "Other",
+  ];
+
+  const PRICE_RANGES = [
+    "All Prices",
+    "0-10000",
+    "10000-20000",
+    "20000-100000",
+    ">100000",
+  ];
+
   return (
     <>
       <div className="container">
@@ -144,16 +177,22 @@ const UserProducts: React.FC = () => {
             onChange={(e) => handleCategoryFilter(e.target.value)}
             className="ml-2 border rounded py-2 px-3"
           >
-            <option value="">All Categories</option>
-            {/* Add options for product categories */}
+            {CATEGORY_TYPE.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
           </select>
           <select
             value={priceFilter}
             onChange={(e) => handlePriceFilter(e.target.value)}
             className="ml-2 border rounded py-2 px-3"
           >
-            <option value="">All Prices</option>
-            {/* Add options for price ranges */}
+            {PRICE_RANGES.map((priceRange, index) => (
+              <option key={index} value={priceRange}>
+                {priceRange}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -165,6 +204,7 @@ const UserProducts: React.FC = () => {
               <div
                 key={product._id}
                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8 cursor-pointer"
+                style={{ minWidth: "350px" }}
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                   <center
@@ -182,11 +222,21 @@ const UserProducts: React.FC = () => {
                     <h3 className="text-lg font-semibold mb-2">
                       {product.productname}
                     </h3>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p
+                      className="text-gray-600 mb-4"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {product.description}
+                    </p>
                     <div className="flex items-center justify-between">
                       <p
                         className={`text-gray-800 font-bold mb-2 ${
-                          product.productqty <= 0 ? "text-red-500" : "" // If quantity is 0 or negative, apply red text color
+                          product.productqty <= 0 ? "text-red-500" : ""
                         }`}
                       >
                         Rs{product.productprice}
@@ -197,14 +247,13 @@ const UserProducts: React.FC = () => {
                             ? "text-red-500"
                             : product.productqty < 5
                             ? "text-red-500"
-                            : "" // Apply red text color if quantity is less than 5 or 0
+                            : ""
                         }`}
                       >
                         {product.productqty}{" "}
                         {product.productqty <= 0 ? "Sold Out" : ""}
                       </p>
                     </div>
-
                     <div className="justify-center">
                       <button
                         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
