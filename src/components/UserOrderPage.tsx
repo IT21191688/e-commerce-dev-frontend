@@ -152,7 +152,7 @@ const UserOrderPage: React.FC = () => {
         }
       );
 
-      console.log(response);
+      //console.log(response);
 
       if (response.status === 201) {
         alert("Order Add Successfully Please Check Your Email");

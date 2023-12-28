@@ -5,7 +5,7 @@ import DashBoardSidBar from "./DashBoardSideBar";
 const InquiryManagement: React.FC = () => {
   const [inquiries, setInquiries] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedStatus, setSelectedStatus] = useState<string>("");
+  //const [selectedStatus, setSelectedStatus] = useState<string>("");
 
   useEffect(() => {
     fetchInquiries();
@@ -35,7 +35,7 @@ const InquiryManagement: React.FC = () => {
     }
   };
 
-  const handleStatusChange = async (inquiryId: string) => {
+  const handleStatusChange = async (status: string, contactId: string) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -46,11 +46,13 @@ const InquiryManagement: React.FC = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      const response = await axios.put(
-        `http://localhost:8090/api/v1/contact/updateStatus/${inquiryId}`,
-        { status: selectedStatus },
+      const response = await axios.post(
+        `http://localhost:8090/api/v1/contact/updateContact/${contactId}`,
+        { status: status },
         { headers }
       );
+
+      console.log(response);
 
       if (response.status === 200) {
         alert("Status updated successfully");
@@ -99,12 +101,12 @@ const InquiryManagement: React.FC = () => {
                   <td className="border px-4 py-2">{inquiry.userId.email}</td>
                   <td className="border px-4 py-2">{inquiry.title}</td>
                   <td className="border px-4 py-2">{inquiry.message}</td>
+                  <td className="border px-4 py-2">{inquiry.status}</td>
                   <td className="border px-4 py-2">
                     <select
+                      value={inquiry.status}
                       onChange={(e) => {
-                        const newStatus = e.target.value;
-                        setSelectedStatus(newStatus);
-                        handleStatusChange(inquiry._id);
+                        handleStatusChange(e.target.value, inquiry._id);
                       }}
                     >
                       <option value="Pending">Pending</option>
@@ -112,7 +114,6 @@ const InquiryManagement: React.FC = () => {
                       <option value="Resolved">Resolved</option>
                     </select>
                   </td>
-                  {/* Add other columns as needed */}
                 </tr>
               ))}
             </tbody>

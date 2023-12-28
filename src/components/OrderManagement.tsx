@@ -8,7 +8,7 @@ const OrderManagement: React.FC = () => {
   const [orders, setOrders] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
-  const [selectedStatus, setSelectedStatus] = useState<string>("");
+  // const [selectedStatus, setSelectedStatus] = useState<string>("");
 
   useEffect(() => {
     fetchOrders();
@@ -65,8 +65,6 @@ const OrderManagement: React.FC = () => {
 
   const handleStatusChange = async (status: string, orderId: string) => {
     try {
-      // Update the status in the database
-
       const token = localStorage.getItem("token");
       if (!token) {
         console.error("Token is missing in localStorage");
@@ -89,9 +87,9 @@ const OrderManagement: React.FC = () => {
 
       console.log(responnce);
 
-      fetchOrders();
+      // fetchOrders();
 
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error updating order status:", error);
     }
@@ -131,7 +129,6 @@ const OrderManagement: React.FC = () => {
                 <th className="px-4 py-2">Order ID</th>
                 <th className="px-4 py-2">Total Price</th>
                 <th className="px-4 py-2">Order Date</th>
-                <th className="px-4 py-2">Order Status</th>
                 <th className="px-4 py-2">Customer Name</th>
                 <th className="px-4 py-2">Email</th>
                 <th className="px-4 py-2">Address</th>
@@ -151,7 +148,7 @@ const OrderManagement: React.FC = () => {
                       {order.paymentid.transactionDetails.amount}
                     </td>
                     <td className="border px-4 py-2">{order.orderdate}</td>
-                    <td className="border px-4 py-2">{order.orderstatus}</td>
+
                     <td className="border px-4 py-2">
                       {order.userid.firstname} {order.userid.lastname}
                     </td>
@@ -161,9 +158,9 @@ const OrderManagement: React.FC = () => {
                     </td>
                     <td className="border px-4 py-2">
                       <select
-                        value={selectedStatus}
+                        value={order.orderstatus}
                         onChange={(e) => {
-                          setSelectedStatus(e.target.value);
+                          //setSelectedStatus(e.target.value);
                           handleStatusChange(e.target.value, order._id);
                         }}
                         className="form-select border-gray-300 rounded-md w-full p-2 mt-1"
