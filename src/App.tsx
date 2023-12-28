@@ -20,6 +20,7 @@ import AboutUs from "./components/AuboutUs";
 import OrderManagement from "./components/OrderManagement";
 import InquearyManagement from "./components/InquearyManagement";
 import UserProfile from "./components/UserProfile";
+import UserReview from "./components/UserReview";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -66,6 +67,7 @@ function App() {
             <Route path="/cartView" element={<UserCartItems />} />
             <Route path="/orderPage" element={<UserOrderPage />} />
             <Route path="/userProfile" element={<UserProfile />} />
+            <Route path="/userReview/:orderId" element={<UserReview />} />
           </Routes>
         </Router>
       ) : null}

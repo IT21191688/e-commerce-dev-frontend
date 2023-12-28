@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -344,9 +345,9 @@ const UserProfile: React.FC = () => {
               <br />
               <button
                 onClick={() => {
-                  // Add review logic here
+                  navigate(`/userReview/${selectedOrder._id}`);
                 }}
-                disabled={selectedOrder?.orderstatus !== "Delivered"} // Disable the button if the order is not delivered
+                // disabled={selectedOrder?.orderstatus !== "Delivered"} // Disable the button if the order is not delivered
                 className={`bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none hover:bg-blue-700 ${
                   selectedOrder?.orderstatus !== "Delivered"
                     ? "opacity-50 cursor-not-allowed"

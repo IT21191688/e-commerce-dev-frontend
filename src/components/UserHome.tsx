@@ -7,9 +7,11 @@ import Footer from "./Footer";
 
 const UserHome: React.FC = () => {
   const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     fetchProducts();
+    fetchReviews();
   }, []);
 
   const fetchProducts = async () => {
@@ -35,6 +37,88 @@ const UserHome: React.FC = () => {
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token is missing in localStorage");
+        return;
+      }
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(
+        "http://localhost:8090/api/v1/review/getAllReviews",
+        { headers }
+      );
+
+      console.log(response.data.data);
+
+      // Set the retrieved products in the state
+      setReviews(response.data.data);
+    } catch (error) {
+      console.error("Error fetching product data:", error);
+    }
+  };
+
+  const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
+    const renderStars = () => {
+      const stars = [];
+      for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+          stars.push(
+            <svg
+              key={i}
+              className="w-10 h-10 fill-current text-yellow-500"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 1l2.5 6.5H19l-5 3.9 2.2 6.6L10 14.2 3.8 17.1l2.2-6.6-5-3.9h6.5L10 1z" />
+            </svg>
+          );
+        } else {
+          stars.push(
+            <svg
+              key={i}
+              className="w-10 h-10 fill-current text-gray-300"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 1l2.5 6.5H19l-5 3.9 2.2 6.6L10 14.2 3.8 17.1l2.2-6.6-5-3.9h6.5L10 1z" />
+            </svg>
+          );
+        }
+      }
+      return stars;
+    };
+
+    return <div className="flex">{renderStars()}</div>;
+  };
+
+  interface Review {
+    userid: {
+      firstname: string;
+      lastname: string;
+    };
+    rating: number;
+    reviewtext: string;
+    // Add other properties as per your actual review object structure
+  }
+
+  const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
+    return (
+      <div className="bg-white rounded-md shadow-md p-4 mb-4">
+        <p className="text-gray-600 mb-2 text-xl">
+          Customer Name:{" "}
+          {review.userid.firstname + " " + review.userid.lastname}
+        </p>
+        <StarRating rating={review.rating} />
+        <p className="text-gray-600 mb-2">Review Text: {review.reviewtext}</p>
+      </div>
+    );
   };
 
   return (
@@ -225,17 +309,14 @@ const UserHome: React.FC = () => {
           quality and satisfaction.
         </h3>
 
-        <div id="feedback" className="feedback-box bg-gray-100 rounded-lg">
-          <div className="customer-info">
-            <h3 className="customer-name text-lg font-semibold mb-2">
-              John Doe
-            </h3>
-            <p className="product-name text-sm text-gray-600">Product Name</p>
-          </div>
-          <div className="feedback-content mt-2">
-            <p className="feedback-text text-gray-800">
-              Excellent service! Highly recommended!
-            </p>
+        <div className="container mx-auto p-8">
+          <h1 className="text-3xl font-bold mb-8">Latest Reviews</h1>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+            {reviews.map((review: any) => (
+              <div key={review._id} className="mb-4">
+                <ReviewCard review={review} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

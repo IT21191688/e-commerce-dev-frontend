@@ -169,8 +169,6 @@ const UserProductView: React.FC = () => {
                   <p className="text-gray-500">"Great product! Loved it."</p>
                 </div>
               </div>
-
-              {/* More reviews can be dynamically added */}
             </div>
           </div>
         </div>
