@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
 import { useNavigate, useParams } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const EditProduct: React.FC = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const EditProduct: React.FC = () => {
       //  setProductImage(productDetails.productimage);
       setProductStatus(productDetails.productstatus);
     } catch (error) {
+      showErrorToast("Error fetching product details");
       console.error("Error fetching product details:", error);
     }
   };
@@ -88,10 +90,12 @@ const EditProduct: React.FC = () => {
 
       if ((response.data.isSuccessful = true)) {
         // console.log("Product added successfully!");
-        alert("Product Edit successfully!");
+        showSuccessToast("Product Edit successfully!");
 
-        navigate("/productManagement");
-        window.location.reload();
+        setTimeout(() => {
+          navigate("/productManagement");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
       console.error("Error adding product:", error);

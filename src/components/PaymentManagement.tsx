@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSideBar from "./DashBoardSideBar";
+import { showErrorToast } from "./services/AlertService";
 
 const PaymentManagement: React.FC = () => {
   const [payments, setPayments] = useState([]);
@@ -32,6 +33,7 @@ const PaymentManagement: React.FC = () => {
       setPayments(response.data.data);
       setFilteredPayments(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching payments:");
       console.error("Error fetching payments:", error);
     }
   };

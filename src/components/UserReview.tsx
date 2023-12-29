@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
 import { useParams, useNavigate } from "react-router-dom";
+import { showSuccessToast } from "./services/AlertService";
 
 const UserReview: React.FC = () => {
   const navigate = useNavigate();
@@ -44,8 +45,11 @@ const UserReview: React.FC = () => {
       );
 
       if (responce.status === 201) {
-        alert("Review submitted successfully!");
-        navigate("/userHome");
+        showSuccessToast("Review submitted successfully!");
+
+        setTimeout(() => {
+          navigate("/userHome");
+        }, 2000);
       }
 
       //console.log("");

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const CustomerManagement: React.FC = () => {
   const [customers, setCustomers] = useState<any[]>([]);
@@ -34,8 +35,10 @@ const CustomerManagement: React.FC = () => {
           headers,
         }
       );
+      showSuccessToast("Success Loading Customer Data");
       setCustomers(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching customer data");
       console.error("Error fetching customer data:", error);
     }
   };
@@ -93,7 +96,7 @@ const CustomerManagement: React.FC = () => {
       );
 
       if (response.status === 201) {
-        alert("Customer data updated");
+        showSuccessToast("Customer data updated");
       }
 
       setEditedFirstName("");

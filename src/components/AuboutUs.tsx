@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "./Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const AboutUs: React.FC = () => {
   const navigate = useNavigate();
@@ -40,10 +41,15 @@ const AboutUs: React.FC = () => {
       );
 
       if (response.status === 201) {
-        alert("Inquiry added successfully");
-        navigate("/userHome");
+        showSuccessToast("Inquiry added successfully");
+
+        setTimeout(() => {
+          navigate("/userHome");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
+      showErrorToast("Error adding Inquiry");
       console.error("Error adding Inquiry:", error);
     }
   };

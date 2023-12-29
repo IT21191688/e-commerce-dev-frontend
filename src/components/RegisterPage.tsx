@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -42,14 +43,20 @@ export default function RegisterPage() {
       setPassword("");
 
       if (response.status == 201) {
-        navigate("/login");
-        window.location.reload();
+        showSuccessToast("Success Register");
+        setTimeout(() => {
+          navigate("/login");
+          window.location.reload();
+        }, 2000);
       } else {
-        alert(response.data.message);
-        navigate("/register");
-        window.location.reload();
+        showErrorToast("Register Unsuccess Please Try again");
+        setTimeout(() => {
+          navigate("/register");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error: any) {
+      showErrorToast("Error occurred:");
       alert("Error occurred:" + error.response.data.message);
     }
   };

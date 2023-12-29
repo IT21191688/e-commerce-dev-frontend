@@ -1,11 +1,11 @@
 import React from "react";
 import DashBoardSidBar from "./DashBoardSideBar";
+//import { showSuccessToast } from "./services/AlertService";
 
 const AdminHome: React.FC = () => {
   return (
     <div className="flex h-screen">
       <DashBoardSidBar />
-
       <main className="flex-1 p-5">
         <h1 className="text-3xl font-bold">Welcome to Admin Dashboard</h1>
 

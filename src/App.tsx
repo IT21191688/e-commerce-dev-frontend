@@ -23,6 +23,8 @@ import UserProfile from "./components/UserProfile";
 import UserReview from "./components/UserReview";
 import ReviewManagement from "./components/ReviewManagement";
 import PaymentManagement from "./components/PaymentManagement";
+import { ToastContainer } from "react-toastify";
+//import OrderReports from "./components/OrderReports";
 
 function App() {
   const [user, setUser] = useState<string | null>(null);
@@ -40,6 +42,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <ToastContainer />
 
       {user === "admin" ? (
         <Router>
@@ -56,6 +59,7 @@ function App() {
             <Route path="/inquaryManagement" element={<InquearyManagement />} />
             <Route path="/reviewManagement" element={<ReviewManagement />} />
             <Route path="/paymentManagement" element={<PaymentManagement />} />
+            {/*<Route path="/orderReport" element={<OrderReports />} />*/}
           </Routes>
         </Router>
       ) : user === "user" ? (

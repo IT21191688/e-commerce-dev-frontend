@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
 import { useNavigate } from "react-router-dom";
+import { showSuccessToast } from "./services/AlertService";
 
 const ProductManagement: React.FC = () => {
   const navigate = useNavigate();
@@ -66,8 +67,11 @@ const ProductManagement: React.FC = () => {
       );
 
       if ((response.data.isSuccessful = true)) {
-        alert("Product Successfully Deleted");
-        fetchProducts();
+        showSuccessToast("Product Successfully Deleted");
+
+        setTimeout(() => {
+          fetchProducts();
+        }, 2000);
       }
     } catch (error) {
       console.error("Error fetching product data:", error);

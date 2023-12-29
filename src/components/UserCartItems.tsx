@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const UserCartItems: React.FC = () => {
   const navigate = useNavigate();
@@ -39,8 +40,11 @@ const UserCartItems: React.FC = () => {
       );
 
       if (response.data.isSuccessful === true) {
-        alert("Cart Item Removed Successfully!");
-        fetchItems();
+        showSuccessToast("Cart Item Removed Successfully!");
+
+        setTimeout(() => {
+          fetchItems();
+        }, 2000);
       }
     } catch (error) {
       console.error("Error removing product:", error);
@@ -74,6 +78,7 @@ const UserCartItems: React.FC = () => {
 
       setCartItems(response.data.data.cartItems);
     } catch (error) {
+      showErrorToast("Error fetching cart items:");
       console.error("Error fetching cart items:", error);
     }
   };

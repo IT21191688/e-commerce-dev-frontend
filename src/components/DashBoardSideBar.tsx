@@ -28,6 +28,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/paymentManagement");
   };
 
+  const handleReportManage = () => {
+    navigate("/orderReport");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -77,11 +81,11 @@ const DashBoardSidBar: React.FC = () => {
             >
               Payments
             </li>
-            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handleReportManage}
+            >
               Reports
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-              Settings
             </li>
           </ul>
         </nav>

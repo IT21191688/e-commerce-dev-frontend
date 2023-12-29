@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const UserOrderPage: React.FC = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const UserOrderPage: React.FC = () => {
 
       //alert(response.data.data.cartItems[0].userid.address);
     } catch (error) {
+      showErrorToast("Error fetching cart items:");
       console.error("Error fetching cart items:", error);
     }
   };
@@ -104,16 +106,13 @@ const UserOrderPage: React.FC = () => {
       console.log(response);
 
       if (response.status === 201) {
-        alert("payment Add Successfully");
+        showSuccessToast("payment Add Successfully");
 
         setPaymentId(response.data.data._id);
         setDisable(false);
-
-        // console.log(response.data.data._id);
-
-        //window.location.reload();
       }
     } catch (error) {
+      showErrorToast("Error payment");
       console.error("Error payment:", error);
     }
 
@@ -123,7 +122,7 @@ const UserOrderPage: React.FC = () => {
   const handlePlaceOrder = async (e: any) => {
     e.preventDefault();
 
-    alert("Payment button");
+    // alert("Payment button");
 
     try {
       const orderData = {
@@ -155,12 +154,15 @@ const UserOrderPage: React.FC = () => {
       //console.log(response);
 
       if (response.status === 201) {
-        alert("Order Add Successfully Please Check Your Email");
-        navigate("/userProducts");
+        showSuccessToast("Order Add Successfully Please Check Your Email");
 
-        window.location.reload();
+        setTimeout(() => {
+          navigate("/userProducts");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
+      showErrorToast("Error payment:");
       console.error("Error payment:", error);
     }
   };

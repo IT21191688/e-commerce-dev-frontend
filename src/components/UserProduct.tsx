@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const UserProducts: React.FC = () => {
   const navigate = useNavigate();
@@ -75,11 +76,15 @@ const UserProducts: React.FC = () => {
       //console.log(response);
 
       if (response.status === 201) {
-        alert("Product Add to cart Successfully");
-        navigate("/userProducts");
-        window.location.reload();
+        showSuccessToast("Product Add to cart Successfully");
+
+        setTimeout(() => {
+          navigate("/userProducts");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
+      showErrorToast("Error adding product:");
       console.error("Error adding product:", error);
     }
   };

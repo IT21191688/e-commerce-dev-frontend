@@ -3,6 +3,7 @@ import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
 import { useNavigate } from "react-router-dom";
 import constants from "../assets/constants";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 const AddNewProduct: React.FC = () => {
   const navigate = useNavigate();
@@ -50,11 +51,15 @@ const AddNewProduct: React.FC = () => {
       //console.log(response);
 
       if (response.status === 201) {
-        alert("Product Add Successfully");
-        navigate("/productManagement");
-        window.location.reload();
+        showSuccessToast("Product Add Successfully");
+
+        setTimeout(() => {
+          navigate("/productManagement");
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
+      showErrorToast("Error adding product");
       console.error("Error adding product:", error);
     }
   };

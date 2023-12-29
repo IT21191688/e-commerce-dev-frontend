@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSideBar from "./DashBoardSideBar";
+import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
 interface Review {
   _id: string;
@@ -38,6 +39,7 @@ const ReviewManagement: React.FC = () => {
 
       setReviews(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching reviews:");
       console.error("Error fetching reviews:", error);
     }
   };
@@ -61,9 +63,13 @@ const ReviewManagement: React.FC = () => {
         }
       );
 
-      // After successfully deleting, fetch reviews again
-      fetchReviews();
+      showSuccessToast("review delete Success");
+
+      setTimeout(() => {
+        fetchReviews();
+      }, 2000);
     } catch (error) {
+      showErrorToast("Error deleting review:");
       console.error("Error deleting review:", error);
     }
   };

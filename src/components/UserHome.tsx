@@ -5,6 +5,7 @@ import sliderImage2 from "../assets/sliderImage2.jpg";
 import sliderImage3 from "../assets/sliderImage3.jpg";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { showErrorToast } from "./services/AlertService";
 
 const UserHome: React.FC = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const UserHome: React.FC = () => {
       // Set the retrieved products in the state
       setReviews(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching product data:");
       console.error("Error fetching product data:", error);
     }
   };

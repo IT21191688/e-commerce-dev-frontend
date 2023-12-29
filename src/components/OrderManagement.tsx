@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
+import { showErrorToast } from "./services/AlertService";
 //import { useNavigate } from "react-router-dom";
 
 const OrderManagement: React.FC = () => {
@@ -33,6 +34,7 @@ const OrderManagement: React.FC = () => {
       // Set the retrieved orders in the state
       setOrders(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching order data");
       console.error("Error fetching order data:", error);
     }
   };

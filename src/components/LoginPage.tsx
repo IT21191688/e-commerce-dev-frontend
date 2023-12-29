@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { showSuccessToast, showErrorToast } from "./services/AlertService";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -31,22 +32,27 @@ const LoginPage: React.FC = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
 
-      alert("Login success");
-
       if (data.user.role === "admin") {
-        navigate("/adminHome");
-        window.location.reload();
+        //showSuccessToast("Login successful! Admin");
+
+        showSuccessToast("Login successful!");
+        setTimeout(() => {
+          navigate("/adminHome");
+          window.location.reload();
+        }, 2000);
       } else {
-        navigate("/userHome");
-        window.location.reload();
+        showSuccessToast("Login successful!");
+        setTimeout(() => {
+          navigate("/userHome");
+          window.location.reload();
+        }, 2000);
+        // showSuccessToast("Login successful!");
       }
 
       // window.location.reload();
     } catch (error) {
-      alert("Login Unsuccess");
-      console.log(error);
-
       navigate("/login");
+      showErrorToast("Login Unsuccessfull!");
     }
   };
 

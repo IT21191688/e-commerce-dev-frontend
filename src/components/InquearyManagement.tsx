@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
+import { showErrorToast } from "./services/AlertService";
 
 const InquiryManagement: React.FC = () => {
   const [inquiries, setInquiries] = useState<any[]>([]);
@@ -31,6 +32,7 @@ const InquiryManagement: React.FC = () => {
 
       setInquiries(response.data.data);
     } catch (error) {
+      showErrorToast("Error fetching inquiry data");
       console.error("Error fetching inquiry data:", error);
     }
   };
