@@ -15,7 +15,6 @@ const ReviewManagement: React.FC = () => {
 
   useEffect(() => {
     fetchReviews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchReviews = async () => {

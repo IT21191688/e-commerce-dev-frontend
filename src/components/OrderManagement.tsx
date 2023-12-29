@@ -145,6 +145,7 @@ const OrderManagement: React.FC = () => {
                   >
                     <td className="border px-4 py-2">{order._id}</td>
                     <td className="border px-4 py-2">
+                      {" "}
                       {order.paymentid.transactionDetails.amount}
                     </td>
                     <td className="border px-4 py-2">{order.orderdate}</td>

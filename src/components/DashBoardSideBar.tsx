@@ -24,6 +24,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/reviewManagement");
   };
 
+  const handlePaymentManage = () => {
+    navigate("/paymentManagement");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -66,6 +70,12 @@ const DashBoardSidBar: React.FC = () => {
               onClick={handleReviewManage}
             >
               Reviews
+            </li>
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handlePaymentManage}
+            >
+              Payments
             </li>
             <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
               Reports
