@@ -24,6 +24,7 @@ import UserReview from "./components/UserReview";
 import ReviewManagement from "./components/ReviewManagement";
 import PaymentManagement from "./components/PaymentManagement";
 import { ToastContainer } from "react-toastify";
+import OrderReports from "./components/OrderReports";
 //import OrderReports from "./components/OrderReports";
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
             <Route path="/inquaryManagement" element={<InquearyManagement />} />
             <Route path="/reviewManagement" element={<ReviewManagement />} />
             <Route path="/paymentManagement" element={<PaymentManagement />} />
-            {/*<Route path="/orderReport" element={<OrderReports />} />*/}
+            <Route path="/orderReport" element={<OrderReports />} />
           </Routes>
         </Router>
       ) : user === "user" ? (

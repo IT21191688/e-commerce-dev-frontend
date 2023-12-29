@@ -72,7 +72,10 @@ const UserOrderPage: React.FC = () => {
   const handlePayment = async (e: any) => {
     e.preventDefault();
 
-    alert("Payment button");
+    if (!validateCreditCard()) {
+      showErrorToast("Invalid credit card details. Please check your inputs.");
+      return;
+    }
 
     try {
       const paymentData = {
@@ -165,6 +168,14 @@ const UserOrderPage: React.FC = () => {
       showErrorToast("Error payment:");
       console.error("Error payment:", error);
     }
+  };
+
+  const validateCreditCard = () => {
+    // Basic credit card validation (you might want to use a library for thorough validation)
+    const cardNumberRegex = /^\d{16}$/; // Example regex for a 16-digit credit card number
+    const csvRegex = /^\d{3}$/; // Example regex for a 3-digit CSV
+
+    return cardNumberRegex.test(cardNumber) && csvRegex.test(csv);
   };
 
   return (
@@ -288,7 +299,6 @@ const UserOrderPage: React.FC = () => {
                         className="w-full border rounded py-2 px-3"
                       />
                     </div>
-                    {/* Other PayPal fields */}
                   </div>
                 )}
               </div>

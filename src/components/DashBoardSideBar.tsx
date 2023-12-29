@@ -32,6 +32,10 @@ const DashBoardSidBar: React.FC = () => {
     navigate("/orderReport");
   };
 
+  const handleHomePage = () => {
+    navigate("/adminHome");
+  };
+
   return (
     <>
       {/* Sidebar */}
@@ -42,7 +46,10 @@ const DashBoardSidBar: React.FC = () => {
         </div>
         <nav className="mt-4">
           <ul>
-            <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+            <li
+              className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+              onClick={handleHomePage}
+            >
               Dashboard
             </li>
             <li
