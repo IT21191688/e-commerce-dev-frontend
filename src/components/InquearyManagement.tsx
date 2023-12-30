@@ -24,7 +24,7 @@ const InquiryManagement: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/contact/getAllContacts",
+        "https://div-stack-backend.onrender.com/api/v1/contact/getAllContacts",
         {
           headers,
         }
@@ -49,7 +49,7 @@ const InquiryManagement: React.FC = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:8090/api/v1/contact/updateContact/${contactId}`,
+        `https://div-stack-backend.onrender.com/api/v1/contact/updateContact/${contactId}`,
         { status: status },
         { headers }
       );

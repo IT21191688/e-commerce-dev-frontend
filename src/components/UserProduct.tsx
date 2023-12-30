@@ -31,7 +31,7 @@ const UserProducts: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/product/getAllProduct",
+        "https://div-stack-backend.onrender.com/api/v1/product/getAllProduct",
         { headers }
       );
 
@@ -66,7 +66,7 @@ const UserProducts: React.FC = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8090/api/v1/cart/addCart",
+        "https://div-stack-backend.onrender.com/api/v1/cart/addCart",
         formData,
         {
           headers,

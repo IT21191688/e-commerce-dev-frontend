@@ -29,7 +29,7 @@ export default function RegisterPage() {
       };
 
       const response = await axios.post(
-        "http://localhost:8090/api/v1/user/register",
+        "https://div-stack-backend.onrender.com/api/v1/user/register",
         {
           user: user,
         }

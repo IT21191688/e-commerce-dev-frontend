@@ -30,7 +30,7 @@ const UserHome: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/product/getAllProduct",
+        "https://div-stack-backend.onrender.com/api/v1/product/getAllProduct",
         { headers }
       );
 
@@ -55,7 +55,7 @@ const UserHome: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/review/getAllReviews",
+        "https://div-stack-backend.onrender.com/api/v1/review/getAllReviews",
         { headers }
       );
 

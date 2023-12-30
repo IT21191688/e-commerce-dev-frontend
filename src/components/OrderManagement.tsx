@@ -27,7 +27,7 @@ const OrderManagement: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/order/getAllOrders",
+        "https://div-stack-backend.onrender.com/api/v1/order/getAllOrders",
         { headers }
       );
 
@@ -52,7 +52,7 @@ const OrderManagement: React.FC = () => {
       };
 
       const response = await axios.delete(
-        `http://localhost:8090/api/v1/order/deleteOrder/${orderId}`,
+        `https://div-stack-backend.onrender.com/api/v1/order/deleteOrder/${orderId}`,
         { headers }
       );
 
@@ -80,7 +80,7 @@ const OrderManagement: React.FC = () => {
         orderstatus: status,
       };
       const responnce = await axios.post(
-        `http://localhost:8090/api/v1/order/updateOrder/${orderId}`,
+        `https://div-stack-backend.onrender.com/api/v1/order/updateOrder/${orderId}`,
         data,
         {
           headers,

@@ -48,7 +48,7 @@ const OrderReports: React.FC = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8090/api/v1/order/getAllOrders",
+        "https://div-stack-backend.onrender.com/api/v1/order/getAllOrders",
         { headers }
       );
       setOrders(response.data.data);

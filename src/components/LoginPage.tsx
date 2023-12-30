@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8090/api/v1/auth/login",
+        "https://div-stack-backend.onrender.com/api/v1/auth/login",
         {
           email: email,
           password: password,
