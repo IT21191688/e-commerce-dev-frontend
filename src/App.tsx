@@ -25,6 +25,7 @@ import ReviewManagement from "./components/ReviewManagement";
 import PaymentManagement from "./components/PaymentManagement";
 import { ToastContainer } from "react-toastify";
 import OrderReports from "./components/OrderReports";
+import ResetPassword from "./components/ResetPassword";
 //import OrderReports from "./components/OrderReports";
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
         </Routes>
       </Router>
     </>
