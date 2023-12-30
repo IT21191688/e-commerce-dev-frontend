@@ -96,7 +96,7 @@ const PaymentManagement: React.FC = () => {
             <thead>
               <tr>
                 <th className="px-4 py-2">Payment ID</th>
-                <th className="px-4 py-2">User ID</th>
+                <th className="px-4 py-2">User Name</th>
                 <th className="px-4 py-2">Payment Method</th>
                 <th className="px-4 py-2">Amount</th>
                 <th className="px-4 py-2">Payment Date</th>

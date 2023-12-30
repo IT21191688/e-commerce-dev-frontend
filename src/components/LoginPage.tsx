@@ -56,18 +56,19 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  /*
   const googleAuth = async () => {
+    alert("Error occured");
+    /*
     try {
       const popup = window.open(
-        "http://localhost:8080/auth/google",
+        "http://localhost:8090/api/v1/auth/auth/google",
         "_blank",
         "width=600,height=600"
       );
 
       const receiveMessage = (event: MessageEvent) => {
         if (
-          event.origin === "http://localhost:8080" &&
+          event.origin === "http://localhost:8090" &&
           event.data.token &&
           event.data.role
         ) {
@@ -79,18 +80,19 @@ const LoginPage: React.FC = () => {
           popup?.close();
           window.removeEventListener("message", receiveMessage);
 
-          // window.location.reload(true);
+          // You can perform further actions after successful authentication,
+          // such as redirecting the user or updating the UI
+          console.log("Login successful");
         }
       };
 
       window.addEventListener("message", receiveMessage);
     } catch (error) {
-      alert("Login Unsucess");
+      alert("Login Unsuccessful");
       console.log(error);
     }
+    */
   };
-
-  */
 
   function handleSignUp() {
     navigate("/register");
@@ -164,7 +166,7 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 className="bg-white border border-gray-300 rounded-md flex items-center justify-center p-2 w-48 mx-auto hover:border-gray-400 hover:shadow transition duration-150"
-                // onClick={googleAuth}
+                onClick={googleAuth}
               >
                 <img
                   className="w-6 h-6 mr-2"
