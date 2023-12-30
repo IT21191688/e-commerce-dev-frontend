@@ -27,6 +27,7 @@ const UserProfile: React.FC = () => {
         return order;
       }
     });
+    calculateProgress(); // Calculate progress when an order is clicked
   };
 
   useEffect(() => {
@@ -135,6 +136,20 @@ const UserProfile: React.FC = () => {
       }
     } catch (error) {
       console.error("Error adding product:", error);
+    }
+  };
+
+  const [progress, setProgress] = useState(0);
+
+  const calculateProgress = () => {
+    if ((selectedOrder.orderStatuses = "Pending")) {
+      setProgress(25);
+    } else if ((selectedOrder.orderStatuses = "Processing")) {
+      setProgress(50);
+    } else if ((selectedOrder.orderStatuses = "Shipped")) {
+      setProgress(75);
+    } else {
+      setProgress(100);
     }
   };
 
@@ -335,15 +350,7 @@ const UserProfile: React.FC = () => {
               <div className="w-full bg-gray-200 rounded-full">
                 <div
                   className="bg-blue-500 rounded-full text-xs leading-none py-1 text-center text-white"
-                  style={{
-                    width: `${
-                      (orders.findIndex(
-                        (order: any) => order._id === selectedOrder._id
-                      ) /
-                        orders.length) *
-                      100
-                    }%`,
-                  }}
+                  style={{ width: `${progress}%` }}
                 >
                   {selectedOrder.orderstatus}
                 </div>
