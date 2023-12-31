@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showErrorToast, showSuccessToast } from "./services/AlertService";
+import profileImage from "../assets/profile.png";
 
 const AboutUs: React.FC = () => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const AboutUs: React.FC = () => {
             <div className="w-full sm:w-1/2 lg:w-1/3 px-4 mb-6">
               <div className="bg-white rounded-lg shadow-md p-6">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src={profileImage}
                   alt="Team Member"
                   className="w-24 h-24 rounded-full mx-auto mb-4"
                 />
@@ -92,7 +93,7 @@ const AboutUs: React.FC = () => {
             <div className="w-full sm:w-1/2 lg:w-1/3 px-4 mb-6">
               <div className="bg-white rounded-lg shadow-md p-6">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src={profileImage}
                   alt="Team Member"
                   className="w-24 h-24 rounded-full mx-auto mb-4"
                 />
@@ -106,7 +107,7 @@ const AboutUs: React.FC = () => {
             <div className="w-full sm:w-1/2 lg:w-1/3 px-4 mb-6">
               <div className="bg-white rounded-lg shadow-md p-6">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src={profileImage}
                   alt="Team Member"
                   className="w-24 h-24 rounded-full mx-auto mb-4"
                 />
@@ -117,12 +118,9 @@ const AboutUs: React.FC = () => {
                 </p>
               </div>
             </div>
-
-            {/* Add more team member cards as needed */}
           </div>
         </section>
 
-        {/* Testimonials Section */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Testimonials</h2>
           <div className="flex flex-wrap -mx-4">
@@ -157,7 +155,6 @@ const AboutUs: React.FC = () => {
                 <p className="text-gray-600 font-semibold">- Happy Customer</p>
               </div>
             </div>
-            {/* Add more testimonial cards as needed */}
           </div>
         </section>
         <br />
@@ -172,24 +169,19 @@ const AboutUs: React.FC = () => {
               </h2>
               <div className="border-t border-gray-300 py-4">
                 <p className="text-lg mb-2 text-gray-700">
-                  <span className="font-semibold">Company Name:</span> Your
-                  Company
+                  <span className="font-semibold">Company Name:</span>THE SHOP
                 </p>
                 <p className="text-lg mb-2 text-gray-700">
                   <span className="font-semibold">Address:</span> 123 Company
-                  St, City, Country
+                  Malabe,Sri Lanka
                 </p>
                 <p className="text-lg mb-2 text-gray-700">
-                  <span className="font-semibold">Contact Number:</span> +1 234
-                  567 890
+                  <span className="font-semibold">Contact Number:</span>
+                  0473130538
                 </p>
-                {/* Add more company details */}
               </div>
             </div>
           </div>
-
-          {/* Right Side: Contact Form */}
-          {/* Right Side: Contact Form */}
           <div className="w-full lg:w-1/2 px-4">
             <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
             <form>

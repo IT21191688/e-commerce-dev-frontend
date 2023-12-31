@@ -92,7 +92,7 @@ export default function Footer() {
         <div className="text-center p-3 bg-black bg-opacity-20">
           © 2020 Copyright:
           <a className="text-white" href="https://mdbootstrap.com/">
-            MDBootstrap.com
+            The Shop PVT(Ltd)
           </a>
         </div>
       </footer>
