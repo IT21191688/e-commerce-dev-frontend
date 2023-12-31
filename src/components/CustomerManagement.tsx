@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashBoardSidBar from "./DashBoardSideBar";
 import { showErrorToast, showSuccessToast } from "./services/AlertService";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Modal } from "react-bootstrap";
 
 const CustomerManagement: React.FC = () => {
   const [customers, setCustomers] = useState<any[]>([]);
@@ -45,9 +47,10 @@ const CustomerManagement: React.FC = () => {
 
   const handleEdit = (customer: any) => {
     setSelectedCustomer(customer);
-    const modal = new bootstrap.Modal(
-      document.getElementById("exampleModal") as HTMLElement
-    );
+    const modal = document.getElementById("exampleModal");
+    if (modal) {
+      (modal as any).style.display = "block";
+    }
 
     setEditedFirstName(customer.firstname);
     setEditedLastName(customer.lastname);
@@ -55,7 +58,6 @@ const CustomerManagement: React.FC = () => {
     setEditedTelephone(customer.telephone);
     setEditedAddress(customer.address);
     setEditedRole(customer.role);
-    modal.show();
   };
 
   const handleCloseModal = () => {
@@ -75,8 +77,6 @@ const CustomerManagement: React.FC = () => {
         address: editedAddress,
         role: editedRole,
       };
-
-      //console.log(updatedCustomerData);
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -106,13 +106,14 @@ const CustomerManagement: React.FC = () => {
       setEditedAddress("");
       setEditedRole("");
 
-      const modal = new bootstrap.Modal(
-        document.getElementById("exampleModal")
-      );
-      modal.hide();
+      const modal = document.getElementById("exampleModal");
+      if (modal) {
+        (modal as any).style.display = "none";
+      }
 
-      // Refetch customers to update the displayed list after the changes
-      fetchCustomers();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error: any) {
       console.error("Error updating customer data:", error);
       alert("Error updating customer data:" + error.response.data.message);
@@ -181,111 +182,88 @@ const CustomerManagement: React.FC = () => {
         </div>
       </main>
       {selectedCustomer && (
-        <div
-          className="modal fade"
+        <Modal
+          show={selectedCustomer !== null}
+          onHide={handleCloseModal}
           id="exampleModal"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
         >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  Edit Customer
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={handleCloseModal}
-                ></button>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Customer</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <div className="mb-3">
+                <label className="col-form-label">First Name:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="recipient-name"
+                  value={editedFirstName}
+                  onChange={(e) => setEditedFirstName(e.target.value)}
+                />
               </div>
-              <div className="modal-body">
-                <form>
-                  <div className="mb-3">
-                    <label className="col-form-label">First Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      value={editedFirstName}
-                      onChange={(e) => setEditedFirstName(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="col-form-label">Last Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      value={editedLastName}
-                      onChange={(e) => setEditedLastName(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="col-form-label">Email:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      value={editedEmail}
-                      onChange={(e) => setEditedEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="col-form-label">Telephone:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      value={editedTelephone}
-                      onChange={(e) => setEditedTelephone(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="col-form-label">Address:</label>
-                    <textarea
-                      className="form-control"
-                      id="message-text"
-                      value={editedAddress}
-                      onChange={(e) => setEditedAddress(e.target.value)}
-                    ></textarea>
-                  </div>
-                  <div className="mb-3">
-                    <label className="col-form-label">Role:</label>
-                    <select
-                      className="form-select"
-                      aria-label="Default select example"
-                      value={editedRole}
-                      onChange={(e) => setEditedRole(e.target.value)}
-                    >
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
-                    </select>
-                  </div>
-                </form>
+              <div className="mb-3">
+                <label className="col-form-label">Last Name:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="recipient-name"
+                  value={editedLastName}
+                  onChange={(e) => setEditedLastName(e.target.value)}
+                />
               </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  onClick={handleCloseModal}
+              <div className="mb-3">
+                <label className="col-form-label">Email:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="recipient-name"
+                  value={editedEmail}
+                  onChange={(e) => setEditedEmail(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="col-form-label">Telephone:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="recipient-name"
+                  value={editedTelephone}
+                  onChange={(e) => setEditedTelephone(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="col-form-label">Address:</label>
+                <textarea
+                  className="form-control"
+                  id="message-text"
+                  value={editedAddress}
+                  onChange={(e) => setEditedAddress(e.target.value)}
+                ></textarea>
+              </div>
+              <div className="mb-3">
+                <label className="col-form-label">Role:</label>
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  value={editedRole}
+                  onChange={(e) => setEditedRole(e.target.value)}
                 >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleEditCustomer}
-                >
-                  Save changes
-                </button>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
               </div>
-            </div>
-          </div>
-        </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleEditCustomer}>
+              Save changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       )}
     </div>
   );
