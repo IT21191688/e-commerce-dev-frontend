@@ -6,4 +6,7 @@ import tailwindcss from "tailwindcss";
 export default defineConfig({
   plugins: [react()],
   //base: "/e-commerce-dev-backend/",
+  build: {
+    outDir: "build", // Change the output directory to 'build'
+  },
 });
