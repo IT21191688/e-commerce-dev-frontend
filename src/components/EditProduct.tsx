@@ -98,7 +98,8 @@ const EditProduct: React.FC = () => {
         }, 2000);
       }
     } catch (error) {
-      console.error("Error adding product:", error);
+      showErrorToast("Error Edit" + error);
+      console.error("Error updating product:", error);
     }
   };
 

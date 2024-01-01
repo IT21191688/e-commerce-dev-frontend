@@ -31,7 +31,7 @@ const ReviewManagement: React.FC = () => {
       };
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/review/getAllReviews",
+        "https://dev-stack-backend.onrender.com/api/v1/review/getAllReviews",
         {
           headers,
         }
@@ -57,7 +57,7 @@ const ReviewManagement: React.FC = () => {
       };
 
       await axios.delete(
-        `https://div-stack-backend.onrender.com/api/v1/review/deleteReview/${reviewId}`,
+        `https://dev-stack-backend.onrender.com/api/v1/review/deleteReview/${reviewId}`,
         {
           headers,
         }

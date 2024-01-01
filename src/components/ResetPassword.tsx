@@ -20,7 +20,7 @@ const ResetPassword: React.FC = () => {
     if (verificationCode == systemVerificationCode) {
       try {
         const response = await axios.post(
-          "https://div-stack-backend.onrender.com/api/v1/user/resetPassword",
+          "https://dev-stack-backend.onrender.com/api/v1/user/resetPassword",
           {
             email,
             newPassword,
@@ -52,7 +52,7 @@ const ResetPassword: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://div-stack-backend.onrender.com/api/v1/user/sendVerificationCode",
+        "https://dev-stack-backend.onrender.com/api/v1/user/sendVerificationCode",
         {
           email,
         }

@@ -41,7 +41,7 @@ const AddNewProduct: React.FC = () => {
       };
 
       const response = await axios.post(
-        "https://div-stack-backend.onrender.com/api/v1/product/createProduct",
+        "https://dev-stack-backend.onrender.com/api/v1/product/createProduct",
         formData,
         {
           headers,

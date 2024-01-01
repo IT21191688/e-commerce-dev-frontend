@@ -37,7 +37,7 @@ const UserReview: React.FC = () => {
       };
 
       const responce = await axios.post(
-        `https://div-stack-backend.onrender.com/api/v1/review/createReview`,
+        `https://dev-stack-backend.onrender.com/api/v1/review/createReview`,
         body,
         {
           headers,

@@ -35,7 +35,7 @@ const UserCartItems: React.FC = () => {
       };
 
       const response = await axios.delete(
-        `https://div-stack-backend.onrender.com/api/v1/cart/removeCartItem/${itemId}`,
+        `https://dev-stack-backend.onrender.com/api/v1/cart/removeCartItem/${itemId}`,
         { headers }
       );
 
@@ -69,7 +69,7 @@ const UserCartItems: React.FC = () => {
       //console.log(token);
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/cart/getCartItemsUserId",
+        "https://dev-stack-backend.onrender.com/api/v1/cart/getCartItemsUserId",
         { headers }
       );
 

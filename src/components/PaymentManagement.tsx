@@ -26,7 +26,7 @@ const PaymentManagement: React.FC = () => {
       };
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/payment/retriveAllPayment",
+        "https://dev-stack-backend.onrender.com/api/v1/payment/retriveAllPayment",
         { headers }
       );
 

@@ -38,7 +38,7 @@ const UserOrderPage: React.FC = () => {
       console.log(token);
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/cart/getCartItemsUserId",
+        "https://dev-stack-backend.onrender.com/api/v1/cart/getCartItemsUserId",
         { headers }
       );
 
@@ -99,7 +99,7 @@ const UserOrderPage: React.FC = () => {
       };
 
       const response = await axios.post(
-        "https://div-stack-backend.onrender.com/api/v1/payment/createPayment",
+        "https://dev-stack-backend.onrender.com/api/v1/payment/createPayment",
         paymentData,
         {
           headers,
@@ -147,7 +147,7 @@ const UserOrderPage: React.FC = () => {
       };
 
       const response = await axios.post(
-        "https://div-stack-backend.onrender.com/api/v1/order/createOrder",
+        "https://dev-stack-backend.onrender.com/api/v1/order/createOrder",
         orderData,
         {
           headers,

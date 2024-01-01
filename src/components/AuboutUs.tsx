@@ -34,7 +34,7 @@ const AboutUs: React.FC = () => {
       };
 
       const response = await axios.post(
-        "https://div-stack-backend.onrender.com/api/v1/contact/createContact",
+        "https://dev-stack-backend.onrender.com/api/v1/contact/createContact",
         formData,
         {
           headers,

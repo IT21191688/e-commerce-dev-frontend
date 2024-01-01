@@ -47,7 +47,7 @@ const UserProfile: React.FC = () => {
       };
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/user/profile",
+        "https://dev-stack-backend.onrender.com/api/v1/user/profile",
         { headers }
       );
 
@@ -77,7 +77,7 @@ const UserProfile: React.FC = () => {
       };
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/order/getOrdersUser",
+        "https://dev-stack-backend.onrender.com/api/v1/order/getOrdersUser",
         { headers }
       );
 
@@ -114,7 +114,7 @@ const UserProfile: React.FC = () => {
       };
 
       const response = await axios.post(
-        `https://div-stack-backend.onrender.com/api/v1/user/updateUser`,
+        `https://dev-stack-backend.onrender.com/api/v1/user/updateUser`,
         formData,
         {
           headers,

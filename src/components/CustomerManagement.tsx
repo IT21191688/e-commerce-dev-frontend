@@ -32,7 +32,7 @@ const CustomerManagement: React.FC = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/user/getAllUser",
+        "https://dev-stack-backend.onrender.com/api/v1/user/getAllUser",
         {
           headers,
         }
@@ -88,7 +88,7 @@ const CustomerManagement: React.FC = () => {
       };
 
       const response = await axios.post(
-        `https://div-stack-backend.onrender.com/api/v1/user/updateUser/${userId}`,
+        `https://dev-stack-backend.onrender.com/api/v1/user/updateUser/${userId}`,
         updatedCustomerData,
         {
           headers,

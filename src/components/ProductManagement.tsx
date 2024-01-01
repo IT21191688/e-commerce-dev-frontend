@@ -25,7 +25,7 @@ const ProductManagement: React.FC = () => {
       };
 
       const response = await axios.get(
-        "https://div-stack-backend.onrender.com/api/v1/product/getAllProduct",
+        "https://dev-stack-backend.onrender.com/api/v1/product/getAllProduct",
         { headers }
       );
 
@@ -62,7 +62,7 @@ const ProductManagement: React.FC = () => {
       };
 
       const response = await axios.delete(
-        `https://div-stack-backend.onrender.com/api/v1/product/deleteProduct/${productId}`,
+        `https://dev-stack-backend.onrender.com/api/v1/product/deleteProduct/${productId}`,
         { headers }
       );
 
