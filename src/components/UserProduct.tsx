@@ -208,8 +208,8 @@ const UserProducts: React.FC = () => {
             {currentProducts.map((product: any, index: number) => (
               <div
                 key={product._id}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8 cursor-pointer"
-                style={{ minWidth: "350px" }}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-3 mb-8 cursor-pointer"
+                style={{ minWidth: "20%" }}
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                   <center
