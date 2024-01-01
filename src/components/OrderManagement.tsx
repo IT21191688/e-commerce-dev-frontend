@@ -89,9 +89,9 @@ const OrderManagement: React.FC = () => {
 
       console.log(responnce);
 
-      // fetchOrders();
+      //fetchOrders();
 
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.error("Error updating order status:", error);
     }
