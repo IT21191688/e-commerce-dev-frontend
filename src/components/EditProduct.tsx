@@ -34,7 +34,7 @@ const EditProduct: React.FC = () => {
       };
 
       const response = await axios.get(
-        `https://div-stack-backend.onrender.com/api/v1/product/getOneProduct/${productId}`, // Replace with your endpoint to get product details by ID
+        `https://dev-stack-backend.onrender.com/api/v1/product/getOneProduct/${productId}`, // Replace with your endpoint to get product details by ID
         {
           headers,
         }
@@ -79,7 +79,7 @@ const EditProduct: React.FC = () => {
       };
 
       const response = await axios.post(
-        `https://div-stack-backend.onrender.com/api/v1/product/updateProduct/${productId}`,
+        `https://dev-stack-backend.onrender.com/api/v1/product/updateProduct/${productId}`,
         formData,
         {
           headers,
